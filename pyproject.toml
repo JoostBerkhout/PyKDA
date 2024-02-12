@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "pykda"
+version = "0.1.0"
+description = ""
+authors = ["Joost Berkhout <joost.berkhout@vu.nl>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+numpy = "^1.26.4"
+ipython = "^8.21.0"
+pre-commit = "^3.6.1"
+pytest = "^8.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
