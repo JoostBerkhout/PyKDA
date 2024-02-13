@@ -71,9 +71,6 @@ venv/
 .ipynb_checkpoints/
 
 *.lock
-*.xml 
-.idea/*
-*.ini
 
 # macOS
 *.DS_Store
