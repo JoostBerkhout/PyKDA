@@ -11,7 +11,17 @@ numpy = "^1.26.4"
 ipython = "^8.21.0"
 pre-commit = "^3.6.1"
 pytest = "^8.0.0"
+tarjan = "^0.2.4"
 
+[tool.black]
+line-length = 80
+
+[tool.ruff]
+line-length = 80
+select = ["E", "F", "I", "NPY", "RET", "RSE", "RUF", "SLF", "SIM", "TCH"]
+
+[tool.ruff.isort]
+case-sensitive = true
 
 [build-system]
 requires = ["poetry-core"]

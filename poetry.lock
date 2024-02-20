@@ -530,6 +530,16 @@ pure-eval = "*"
 tests = ["cython", "littleutils", "pygments", "pytest", "typeguard"]
 
 [[package]]
+name = "tarjan"
+version = "0.2.4"
+description = "Implementation of Tarjan's algorithm: resolve cyclic deps"
+optional = false
+python-versions = "*"
+files = [
+    {file = "tarjan-0.2.4.tar.gz", hash = "sha256:a9d7e93368c8c75d33b0849801f2687a59c91e0ae487b8ba7e97e431e841a514"},
+]
+
+[[package]]
 name = "tomli"
 version = "2.0.1"
 description = "A lil' TOML parser"
@@ -589,4 +599,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "ae8f00054522c48dd9e285b7a4dbab1d83dccaa355593e894c9078f097b9afb3"
+content-hash = "88eb12dd60cc9c303f6e9050b2c2d37192923f4aaeec32855352ba32574e064b"
