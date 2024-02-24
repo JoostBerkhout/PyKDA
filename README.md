@@ -1,5 +1,5 @@
 [![PyPI version](https://badge.fury.io/py/pykda.svg)](https://badge.fury.io/py/pykda)
-[![ALNS](https://github.com/JoostBerkhout/PyKDA/actions/workflows/PyKDA.yaml/badge.svg)](https://github.com/JoostBerkhout/PyKDA/actions/workflows/PyKDA.yaml)
+[![ALNS](https://github.com/JoostBerkhout/PyKDA/actions/workflows/PyKDA.yaml/badge.svg)](https://github.com/JoostBerkhout/PyKDA/actions/workflows/PyKDA.yml)
 [![codecov](https://codecov.io/gh/JoostBerkhout/PyKDA/graph/badge.svg?token=M4WF9A5ZML)](https://codecov.io/gh/JoostBerkhout/PyKDA)
 
 # PyKDA
