@@ -51,7 +51,7 @@ Pull requests are welcome. For major changes, please open an issue first
 to discuss what you would like to change. 
 Please make sure to update tests as appropriate.
 
-## How to cite `pykda`
+## How to cite `pykda`?
 
 If you use `pykda` in your research, please consider citing the following paper:
 
