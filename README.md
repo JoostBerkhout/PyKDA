@@ -13,7 +13,7 @@ pip install pyKDA
 ## Usage
 
 ```python
-import pyKDA
+import PyKDA
 import numpy as np
 
 P = np.array(

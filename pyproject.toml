@@ -17,7 +17,7 @@ ipython = "^8.22.1"
 pytest-cov = "^4.1.0"
 
 [tool.pytest.ini_options]
-addopts = "--cov=pyKDA --cov-report=xml"
+addopts = "--cov=PyKDA --cov-report=xml"
 
 [tool.black]
 line-length = 80
