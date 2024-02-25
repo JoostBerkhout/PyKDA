@@ -70,5 +70,6 @@ jobs:
           pip install poetry
       - name: Deploy to PyPI
         run: |
+          poetry config pypi-token.pypi ${{ secrets.PYPI_TOKEN }}
           poetry build
           poetry publish
