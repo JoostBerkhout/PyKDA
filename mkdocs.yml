@@ -1,0 +1,30 @@
+site_name: PyKDA
+
+nav:
+  - Home: index.md
+  - About: about.md
+  - API reference:
+      - references/Markov_chain.md
+      - references/KDA.md
+      - references/normalizers.md
+      - references/loaders.md
+      - references/utilities.md
+
+theme:
+  name: material
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/solid/paper-plane
+      link: mailto:<joost.berkhout@vu.nl>
+    - icon: fontawesome/brands/github
+      link: https://github.com/JoostBerkhout/PyKDA
+
+plugins:
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: numpy
+            docstring_section_style: list

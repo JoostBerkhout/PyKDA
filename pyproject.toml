@@ -16,6 +16,12 @@ pytest = "^8.0.1"
 ipython = "^8.22.1"
 pytest-cov = "^4.1.0"
 
+
+[tool.poetry.group.docs.dependencies]
+mkdocs = "^1.5.3"
+mkdocs-material = "^9.5.11"
+mkdocstrings = {extras = ["python"], version = "^0.24.1"}
+
 [tool.pytest.ini_options]
 addopts = "--cov=PyKDA --cov-report=xml"
 
