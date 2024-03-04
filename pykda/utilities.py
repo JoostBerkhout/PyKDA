@@ -40,6 +40,24 @@ def is_nonnegative_matrix(A: np.ndarray) -> bool_:
     return (A >= 0).all()
 
 
+def has_positive_row_sums(A: np.ndarray) -> bool_:
+    """
+    Check if the row sums of a given matrix are positive.
+
+    Parameters
+    ----------
+    A : np.ndarray
+        Matrix to be checked.
+
+    Returns
+    -------
+    bool
+        True if the row sums of A are positive, False otherwise.
+
+    """
+    return (A.sum(axis=1) > 0).all()
+
+
 def row_sums_are_1(A: np.ndarray) -> bool:
     """
     Check if the row sums of a given matrix are equal to one.

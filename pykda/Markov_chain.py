@@ -1,8 +1,11 @@
+import copy
 from functools import cached_property
+from typing import List, Tuple
 
 import numpy as np
 from tarjan import tarjan
 
+from pykda.loaders import load_transition_matrix
 from pykda.utilities import create_graph_dict
 
 
@@ -15,13 +18,35 @@ class MarkovChain:
 
     Parameters
     ----------
-    P : np.ndarray
+    P : np.ndarray or list[list]
         Probability transition matrix.
 
     """
 
-    def __init__(self, P: np.ndarray):
+    def __init__(self, P: np.ndarray | List[List]) -> None:
         self.P = P
+
+    def __str__(self):  # pragma: no cover
+        return (
+            f"MC with {self.num_states} states.\n"
+            f"Ergodic classes: {self.ergodic_classes}.\n"
+            f"Transient classes: {self.transient_classes}."
+        )
+
+    def copy(self):
+        return copy.deepcopy(self)
+
+    @property
+    def P(self):
+        """Probability transition matrix."""
+
+        return self._P
+
+    @P.setter
+    def P(self, P: np.ndarray | List[List]) -> None:
+        """Setter for probability transition matrix."""
+
+        self._P = load_transition_matrix(P)
 
     @cached_property
     def num_states(self) -> int:
@@ -46,6 +71,12 @@ class MarkovChain:
         """Strongly connected components of Markov chain as list of lists."""
 
         return tarjan(create_graph_dict(self.P))
+
+    @cached_property
+    def weakly_connected_components(self) -> list[list[int]]:
+        """Weakly connected components of Markov chain as list of lists."""
+
+        return tarjan(create_graph_dict(self.P + self.P.T))
 
     @cached_property
     def ergodic_classes(self) -> list[list[int]]:
@@ -82,6 +113,18 @@ class MarkovChain:
         """Gives all transient states of the Markov chain as a list."""
 
         return [state for tc in self.transient_classes for state in tc]
+
+    @cached_property
+    def num_strongly_connected_components(self) -> int:
+        """Number of strongly connected components in the Markov chain."""
+
+        return len(self.strongly_connected_components)
+
+    @cached_property
+    def num_weakly_connected_components(self) -> int:
+        """Number of weakly connected components in the Markov chain."""
+
+        return len(self.weakly_connected_components)
 
     @cached_property
     def num_ergodic_classes(self) -> int:
@@ -242,7 +285,6 @@ class MarkovChain:
     @cached_property
     def Kemeny_constant(self):
         """Kemeny constant of the Markov chain."""
-
         return np.trace(self.deviation_matrix) + 1
 
     @cached_property
@@ -270,8 +312,98 @@ class MarkovChain:
             else:
                 self._transient_classes.append(scc)
 
+    def sorted_edges(
+        self, existing_edges_only: bool = True
+    ) -> Tuple[np.ndarray, np.ndarray]:
+        """Returns the edges/transitions in order of how connecting they are
+        from least to most connecting.
 
-if __name__ == "__main__":
+        How connecting they are is measure by the Kemeny constant derivatives.
+
+        Parameters
+        ----------
+        existing_edges_only : bool
+            If True (default), only existing edges are considered.
+
+        Returns
+        -------
+        Tuple[np.ndarray, np.ndarray]
+            The ordered row and column indices, respectively, of the
+            edges/connections in order of smallest Kemeny constant derivatives.
+        """
+
+        ordered_idxs = np.argsort(self.Kemeny_constant_derivatives, axis=None)
+
+        if existing_edges_only:
+            existing_idxs = np.flatnonzero(self.P > 0)
+            ordered_idxs = [x for x in ordered_idxs if x in existing_idxs]
+
+        row_idxs, col_idxs = np.unravel_index(ordered_idxs, self.P.shape)
+
+        return row_idxs, col_idxs
+
+    def most_connecting_edges(
+        self, num_edges: int, only_existing_edges: bool = True
+    ) -> Tuple[np.ndarray, np.ndarray]:
+        """Returns the num_edges most connecting edges.
+
+        Parameters
+        ----------
+        num_edges : int
+            Number of edges to return.
+        only_existing_edges : bool
+            If True, only existing edges are considered.
+
+        Returns
+        -------
+        Tuple[np.ndarray, np.ndarray]
+            The num_edges row and column indices, respectively, of the
+            edges/connections with the smallest Kemeny constant derivatives.
+        """
+
+        row_idxs, col_idxs = self.sorted_edges(only_existing_edges)
+
+        if len(row_idxs) < num_edges:
+            print(
+                "Warning: # edges requested exceeds # edges in the matrix. "
+                "Returned as many as possible."
+            )
+            num_edges = len(row_idxs)
+
+        return row_idxs[:num_edges], col_idxs[:num_edges]
+
+    def edges_below_threshold(
+        self, threshold: float, only_existing_edges=True
+    ) -> Tuple[np.ndarray, np.ndarray]:
+        """Returns the edges with Kemeny constant derivatives < threshold.
+
+        Parameters
+        ----------
+        threshold : float
+            Threshold for selected edges.
+        only_existing_edges : bool
+            If True, only existing edges are considered.
+
+        Returns
+        -------
+        Tuple[np.ndarray, np.ndarray]
+            The num_edges row and column indices, respectively, of the
+            edges/connections with the smallest Kemeny constant derivatives.
+        """
+
+        row_idxs, col_idxs = self.sorted_edges(only_existing_edges)
+
+        # find the num_edges edges with Kemeny constant derivative < threshold
+        num_edges = 0
+        for (i, j) in zip(row_idxs, col_idxs):
+            if self.Kemeny_constant_derivatives[i, j] >= threshold:
+                break
+            num_edges += 1
+
+        return row_idxs[:num_edges], col_idxs[:num_edges]
+
+
+if __name__ == "__main__":  # pragma: no cover
 
     P = np.array(
         [
@@ -295,10 +427,3 @@ if __name__ == "__main__":
         ]
     )
     MC = MarkovChain(P)
-    print(
-        MC.variance_first_passage_matrix[MC.variance_first_passage_matrix >= 0]
-    )
-
-    # print(MC.pi)
-    # print(MC.pi)
-    # print(MC.stationary_distribution)

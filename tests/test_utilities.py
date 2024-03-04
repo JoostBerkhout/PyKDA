@@ -5,6 +5,7 @@ from pykda.utilities import (
     create_graph_dict,
     eigenvec_centrality,
     expand_matrix_with_row_and_column,
+    has_positive_row_sums,
     is_nonnegative_matrix,
     is_stochastic_matrix,
     row_sums_are_1,
@@ -36,6 +37,23 @@ def test_is_nonnegative_matrix(example_unichains, example_multichains):
     assert is_nonnegative_matrix(np.array([[0.5, 0.5], [10, 0.5]]))
     assert not is_nonnegative_matrix(np.array([[0.5, 0.5], [-1, 2]]))
     assert not is_nonnegative_matrix(np.array([[0.5, -0.5], [1, 2]]))
+
+
+def test_has_positive_row_sums(example_unichains, example_multichains):
+
+    for MC in example_unichains:
+        assert has_positive_row_sums(MC["P"])
+
+    for MC in example_multichains:
+        assert has_positive_row_sums(MC["P"])
+
+    assert not has_positive_row_sums(np.array([[0, 0], [0.6, 0.4]]))
+    assert has_positive_row_sums(np.array([[0, 0, 0.1], [0.6, 0.4, 0.3]]))
+    assert not has_positive_row_sums(np.array([[0, 0, 0.1], [0, 0, 0]]))
+    assert not has_positive_row_sums(np.array([[0, 0, 0], [0, 0, 0]]))
+    assert not has_positive_row_sums(
+        np.array([[0, 0, 0], [0, 0, 0], [0, 0, 0]])
+    )
 
 
 def test_row_sums_are_1(example_unichains, example_multichains):

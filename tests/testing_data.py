@@ -41,6 +41,7 @@ def example_unichains():
             "ergodic classes": [[0, 1, 2]],
             "transient classes": [],
             "strongly connected components": [[0, 1, 2]],
+            "weakly connected components": [[0, 1, 2]],
         },
         {
             "source": "Own example",
@@ -55,6 +56,7 @@ def example_unichains():
             "ergodic classes": [[0]],
             "transient classes": [],
             "strongly connected components": [[0]],
+            "weakly connected components": [[0]],
         },
         {
             "source": "Own example",
@@ -69,6 +71,7 @@ def example_unichains():
             "ergodic classes": [[0]],
             "transient classes": [[1]],
             "strongly connected components": [[0], [1]],
+            "weakly connected components": [[0, 1]],
         },
         {
             "source": "Example 3 with p = 0.5 from Kemeny & Snell (1976) pages"
@@ -118,6 +121,7 @@ def example_unichains():
             "ergodic classes": [[0, 1, 2, 3, 4]],
             "transient classes": [[]],
             "strongly connected components": [[0, 1, 2, 3, 4]],
+            "weakly connected components": [[0, 1, 2, 3, 4]],
         },
         {
             "source": "Example 7 from Kemeny & Snell (1976) page 90",
@@ -136,6 +140,7 @@ def example_unichains():
             "ergodic classes": [[0, 1, 2, 3, 4]],
             "transient classes": [[]],
             "strongly connected components": [[0, 1, 2, 3, 4]],
+            "weakly connected components": [[0, 1, 2, 3, 4]],
         },
     ]
 
@@ -170,6 +175,7 @@ def example_unichains():
                 "ergodic classes": [[0, 1]],
                 "transient classes": [],
                 "strongly connected components": [[0, 1]],
+                "weakly connected components": [[0, 1]],
             }
         )
 
@@ -196,6 +202,7 @@ def example_multichains():
             "ergodic classes": [[0], [1]],
             "transient classes": [],
             "strongly connected components": [[0], [1]],
+            "weakly connected components": [[0], [1]],
         },
         {
             "source": "Own example",
@@ -212,6 +219,7 @@ def example_multichains():
             "ergodic classes": [[0], [1]],
             "transient classes": [[2]],
             "strongly connected components": [[0], [1], [2]],
+            "weakly connected components": [[0, 2], [1]],
         },
         {
             "source": "Own example",
@@ -228,6 +236,7 @@ def example_multichains():
             "ergodic classes": [[1], [2]],
             "transient classes": [[0]],
             "strongly connected components": [[0], [1], [2]],
+            "weakly connected components": [[0, 1], [2]],
         },
         {
             "source": "Own example",
@@ -244,6 +253,7 @@ def example_multichains():
             "ergodic classes": [[0], [1]],
             "transient classes": [[2]],
             "strongly connected components": [[0], [1], [2]],
+            "weakly connected components": [[0, 1, 2]],
         },
     ]
 

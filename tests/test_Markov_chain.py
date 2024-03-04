@@ -1,5 +1,5 @@
 import numpy as np
-from pytest import approx
+from pytest import approx, raises
 
 from pykda.Markov_chain import MarkovChain
 from pykda.utilities import perturb_stochastic_matrix
@@ -38,9 +38,25 @@ def compare_lists_of_lists(list1, list2):
 
 def test_strongly_connected_components(example_unichains, example_multichains):
     for instance in example_unichains + example_multichains:
-        ssc = MarkovChain(instance["P"]).strongly_connected_components
+        MC = MarkovChain(instance["P"])
+        scc = MC.strongly_connected_components
         assert compare_lists_of_lists(
-            ssc, instance["strongly connected components"]
+            scc, instance["strongly connected components"]
+        )
+        assert MC.num_strongly_connected_components == len(
+            instance["strongly connected components"]
+        )
+
+
+def test_weakly_connected_components(example_unichains, example_multichains):
+    for instance in example_unichains + example_multichains:
+        MC = MarkovChain(instance["P"])
+        wcc = MC.weakly_connected_components
+        assert compare_lists_of_lists(
+            wcc, instance["weakly connected components"]
+        )
+        assert MC.num_weakly_connected_components == len(
+            instance["weakly connected components"]
         )
 
 
@@ -117,7 +133,7 @@ def test_deviation_matrix(example_unichains, example_multichains):
         assert np.allclose(MC.deviation_matrix, instance["deviation matrix"])
 
 
-def test_mean_first_passage_matrix(example_unichains):
+def test_mean_first_passage_matrix(example_unichains, example_multichains):
     for instance in example_unichains:
 
         if instance["mean first passage matrix"] is None:
@@ -128,8 +144,14 @@ def test_mean_first_passage_matrix(example_unichains):
             MC.mean_first_passage_matrix, instance["mean first passage matrix"]
         )
 
+    for instance in example_multichains:
 
-def test_variance_first_passage_matrix(example_unichains):
+        MC = MarkovChain(instance["P"])
+        with raises(Exception):
+            MC.mean_first_passage_matrix
+
+
+def test_variance_first_passage_matrix(example_unichains, example_multichains):
     for instance in example_unichains:
 
         if instance["variance first passage matrix"] is None:
@@ -140,6 +162,12 @@ def test_variance_first_passage_matrix(example_unichains):
             MC.variance_first_passage_matrix,
             instance["variance first passage matrix"],
         )
+
+    for instance in example_multichains:
+
+        MC = MarkovChain(instance["P"])
+        with raises(Exception):
+            MC.variance_first_passage_matrix
 
 
 def test_Kemeny_constant_derivatives(example_unichains):
@@ -170,3 +198,144 @@ def test_Kemeny_constant_derivatives(example_unichains):
                     approx(MC.Kemeny_constant_derivatives[i, j], abs=abs_diff)
                     == FD_approx
                 )
+
+
+def test_copy(example_unichains, example_multichains):
+
+    for instance in example_unichains + example_multichains:
+        MC = MarkovChain(instance["P"])
+        MC.ergodic_projector
+        MC_copy = MC.copy()
+        MC.fundamental_matrix
+        assert "ergodic_classes" in MC_copy.__dict__
+        assert "fundamental_matrix" not in MC_copy.__dict__.keys()
+        assert np.allclose(MC.P, MC_copy.P)
+        assert np.allclose(MC.ergodic_projector, MC_copy.ergodic_projector)
+
+
+def test_ones(example_unichains, example_multichains):
+    for instance in example_unichains + example_multichains:
+        MC = MarkovChain(instance["P"])
+        assert np.allclose(MC.ones, 1)
+        assert MC.ones.shape == (MC.num_states, MC.num_states)
+
+
+def test_sorted_edges():
+
+    # increasing counts per edge
+    num_states = 5
+    MC = MarkovChain(np.ones((num_states, num_states)))
+    MC.Kemeny_constant_derivatives = np.empty(
+        (num_states, num_states)
+    )  # hacky: overule the Kemeny_constant_derivatives
+    count = 0
+    expected_sorted_edges = [[], []]
+    for i in range(num_states):
+        for j in range(num_states):
+            MC.Kemeny_constant_derivatives[i, j] = count
+            count += 1
+            expected_sorted_edges[0].append(i)
+            expected_sorted_edges[1].append(j)
+    assert np.allclose(MC.sorted_edges()[0], expected_sorted_edges[0])
+    assert np.allclose(MC.sorted_edges()[1], expected_sorted_edges[1])
+
+    # decreasing counts per edge
+    num_states = 5
+    MC = MarkovChain(np.ones((num_states, num_states)))
+    MC.Kemeny_constant_derivatives = np.empty(
+        (num_states, num_states)
+    )  # hacky: overule the Kemeny_constant_derivatives
+    count = num_states**2
+    expected_sorted_edges = [[], []]
+    for i in range(num_states):
+        for j in range(num_states):
+            MC.Kemeny_constant_derivatives[i, j] = count
+            count -= 1
+            expected_sorted_edges[0] = [i] + expected_sorted_edges[0]
+            expected_sorted_edges[1] = [j] + expected_sorted_edges[1]
+    assert np.allclose(MC.sorted_edges()[0], expected_sorted_edges[0])
+    assert np.allclose(MC.sorted_edges()[1], expected_sorted_edges[1])
+
+    # manual test
+    MC = MarkovChain(np.ones((3, 3)))
+    MC.Kemeny_constant_derivatives = np.array(
+        [[-1, 2, -3], [4, -5, 6], [1.5, 8.5, -9]]
+    )
+    expected_sorted_edges = [
+        [2, 1, 0, 0, 2, 0, 1, 1, 2],
+        [2, 1, 2, 0, 0, 1, 0, 2, 1],
+    ]
+    assert np.allclose(MC.sorted_edges()[0], expected_sorted_edges[0])
+    assert np.allclose(MC.sorted_edges()[1], expected_sorted_edges[1])
+
+    # manual test: only existing edges
+    MC = MarkovChain([[1, 1, 1], [1, 0, 1], [1, 0, 1]])
+    MC.Kemeny_constant_derivatives = np.array(
+        [[-1, 2, -3], [4, -5, 6], [1.5, 8.5, -9]]
+    )
+    expected_sorted_edges = [[2, 0, 0, 2, 0, 1, 1], [2, 2, 0, 0, 1, 0, 2]]
+    assert np.allclose(MC.sorted_edges()[0], expected_sorted_edges[0])
+    assert np.allclose(MC.sorted_edges()[1], expected_sorted_edges[1])
+
+    # manual test: all existing edges
+    MC = MarkovChain([[1, 1, 1], [1, 0, 1], [1, 0, 1]])
+    MC.Kemeny_constant_derivatives = np.array(
+        [[-1, 2, -3], [4, -5, 6], [1.5, 8.5, -9]]
+    )
+    expected_sorted_edges = [
+        [2, 1, 0, 0, 2, 0, 1, 1, 2],
+        [2, 1, 2, 0, 0, 1, 0, 2, 1],
+    ]
+    assert np.allclose(MC.sorted_edges(False)[0], expected_sorted_edges[0])
+    assert np.allclose(MC.sorted_edges(False)[1], expected_sorted_edges[1])
+
+
+def test_most_connecting_edges():
+
+    # manual test
+    MC = MarkovChain(np.ones((3, 3)))
+    MC.Kemeny_constant_derivatives = np.array(
+        [[-1, 2, -3], [4, -5, 6], [1.5, 8.5, -9]]
+    )
+    all_expected_sorted_edges = [
+        [2, 1, 0, 0, 2, 0, 1, 1, 2],
+        [2, 1, 2, 0, 0, 1, 0, 2, 1],
+    ]
+    for num in range(1, 11):  # note: num = 10 is > # existing edges for testing
+        expected_sorted_edges = [
+            all_expected_sorted_edges[0][:num],
+            all_expected_sorted_edges[1][:num],
+        ]
+        assert np.allclose(
+            MC.most_connecting_edges(num)[0], expected_sorted_edges[0]
+        )
+        assert np.allclose(
+            MC.most_connecting_edges(num)[1], expected_sorted_edges[1]
+        )
+
+
+def test_edges_below_threshold():
+
+    # manual test: existing edges
+    MC = MarkovChain(np.ones((3, 3)))
+    MC.Kemeny_constant_derivatives = np.array(
+        [[-1, 2, -3], [4, -5, 6], [1.5, 8.5, -9]]
+    )
+    threshold = -4
+    expected_sorted_edges = [[2, 1], [2, 1]]
+    assert np.allclose(
+        MC.edges_below_threshold(threshold)[0], expected_sorted_edges[0]
+    )
+    assert np.allclose(
+        MC.edges_below_threshold(threshold)[1], expected_sorted_edges[1]
+    )
+
+    # new threshold: existing edges
+    expected_sorted_edges = [[2, 1, 0, 0, 2], [2, 1, 2, 0, 0]]
+    threshold = 2
+    assert np.allclose(
+        MC.edges_below_threshold(threshold)[0], expected_sorted_edges[0]
+    )
+    assert np.allclose(
+        MC.edges_below_threshold(threshold)[1], expected_sorted_edges[1]
+    )

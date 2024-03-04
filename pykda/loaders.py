@@ -1,16 +1,19 @@
-from typing import Callable, List, Union
+from typing import List
 
 import numpy as np
 
-from pykda import constants, utilities
-from pykda.normalizers import standard_row_normalization
-
-_normalizer_type = Callable[[np.ndarray], np.ndarray]
+from pykda.constants import PRINT_NORMALIZATION_WARNINGS
+from pykda.normalizers import normalizer_type, standard_row_normalization
+from pykda.utilities import (
+    has_positive_row_sums,
+    is_nonnegative_matrix,
+    is_stochastic_matrix,
+)
 
 
 def load_transition_matrix(
-    A: Union[np.ndarray, List[List]],
-    normalizer: _normalizer_type = standard_row_normalization,
+    A: np.ndarray | List[List],
+    normalizer: normalizer_type = standard_row_normalization,
 ) -> np.ndarray:
     """
     Load a transition matrix from a given array. If the array is not a
@@ -35,10 +38,21 @@ def load_transition_matrix(
     if not isinstance(A, np.ndarray):
         A = np.array(A)
 
-    if utilities.is_stochastic_matrix(A):
+    if is_stochastic_matrix(A):
         return A
 
-    if constants.PRINT_WARNINGS:
+    if PRINT_NORMALIZATION_WARNINGS:
         print("The given matrix is not stochastic: trying to normalize it.")
+
+    if not is_nonnegative_matrix(A):
+        if PRINT_NORMALIZATION_WARNINGS:
+            print("Negative elements in matrix replaced by zeros.")
+        A[A < 0] = 0
+
+    if not has_positive_row_sums(A):
+        if PRINT_NORMALIZATION_WARNINGS:
+            print("Some row sums were zero: added self-loops.")
+        rows_zero_sums = A.sum(axis=1) == 0
+        A[rows_zero_sums, rows_zero_sums] = 1
 
     return normalizer(A)
