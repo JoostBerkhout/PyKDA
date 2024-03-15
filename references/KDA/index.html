@@ -1,0 +1,2561 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Markov_chain/">
+      
+      
+        <link rel="next" href="../normalizers/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.11">
+    
+    
+      
+        <title>KDA - PyKDA</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e359304.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pykda.KDA" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="PyKDA" class="md-header__button md-logo" aria-label="PyKDA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PyKDA
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              KDA
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PyKDA" class="md-nav__button md-logo" aria-label="PyKDA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    PyKDA
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Examples
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Examples
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Examples
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    API reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            API reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Markov_chain/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Markov chain
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    KDA
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    KDA
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pykda.KDA" class="md-nav__link">
+    <span class="md-ellipsis">
+      KDA
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA" class="md-nav__link">
+    <span class="md-ellipsis">
+      KDA
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="KDA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.check_for_infinite_loops" class="md-nav__link">
+    <span class="md-ellipsis">
+      check_for_infinite_loops
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.condition_A" class="md-nav__link">
+    <span class="md-ellipsis">
+      condition_A
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.condition_A_translator" class="md-nav__link">
+    <span class="md-ellipsis">
+      condition_A_translator
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.condition_B" class="md-nav__link">
+    <span class="md-ellipsis">
+      condition_B
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.condition_B_translator" class="md-nav__link">
+    <span class="md-ellipsis">
+      condition_B_translator
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.cut_edges" class="md-nav__link">
+    <span class="md-ellipsis">
+      cut_edges
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.cut_till_condition_B_fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      cut_till_condition_B_fails
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.get_num_in_brackets" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_num_in_brackets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.get_num_in_str_brackets" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_num_in_str_brackets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.log_edges" class="md-nav__link">
+    <span class="md-ellipsis">
+      log_edges
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.plot" class="md-nav__link">
+    <span class="md-ellipsis">
+      plot
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.plot_progress" class="md-nav__link">
+    <span class="md-ellipsis">
+      plot_progress
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.report" class="md-nav__link">
+    <span class="md-ellipsis">
+      report
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.run" class="md-nav__link">
+    <span class="md-ellipsis">
+      run
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../normalizers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Normalizers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../loaders/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Loaders
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../utilities/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Utilities
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pykda.KDA" class="md-nav__link">
+    <span class="md-ellipsis">
+      KDA
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA" class="md-nav__link">
+    <span class="md-ellipsis">
+      KDA
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="KDA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.check_for_infinite_loops" class="md-nav__link">
+    <span class="md-ellipsis">
+      check_for_infinite_loops
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.condition_A" class="md-nav__link">
+    <span class="md-ellipsis">
+      condition_A
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.condition_A_translator" class="md-nav__link">
+    <span class="md-ellipsis">
+      condition_A_translator
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.condition_B" class="md-nav__link">
+    <span class="md-ellipsis">
+      condition_B
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.condition_B_translator" class="md-nav__link">
+    <span class="md-ellipsis">
+      condition_B_translator
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.cut_edges" class="md-nav__link">
+    <span class="md-ellipsis">
+      cut_edges
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.cut_till_condition_B_fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      cut_till_condition_B_fails
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.get_num_in_brackets" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_num_in_brackets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.get_num_in_str_brackets" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_num_in_str_brackets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.log_edges" class="md-nav__link">
+    <span class="md-ellipsis">
+      log_edges
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.plot" class="md-nav__link">
+    <span class="md-ellipsis">
+      plot
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.plot_progress" class="md-nav__link">
+    <span class="md-ellipsis">
+      plot_progress
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.report" class="md-nav__link">
+    <span class="md-ellipsis">
+      report
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pykda.KDA.KDA.run" class="md-nav__link">
+    <span class="md-ellipsis">
+      run
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>KDA</h1>
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="pykda.KDA"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="pykda.KDA.KDA" class="doc doc-heading">
+          <code>KDA</code>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Kemeny Decomposition Algorithm (KDA) class.</p>
+<p>KDA will iteratively cut 'edges' to decompose an original Markov chain (MC).
+An edge corresponds to a MC transition probability. The notation of Berkhout
+and Heidergott (2019) is used.</p>
+
+
+
+  <p>Attributes:</p>
+  <ul>
+      <li class="field-body">
+        <b><code><span title="pykda.KDA.KDA.MC">MC</span></code></b>
+            (<code><a class="autorefs autorefs-internal" title="pykda.Markov_chain.MarkovChain" href="../Markov_chain/#pykda.Markov_chain.MarkovChain">MarkovChain</a></code>)
+        –
+        <div class="doc-md-description">
+          <p>Current Markov chain during KDA.</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code><span title="pykda.KDA.KDA.log">log</span></code></b>
+            (<code>dict</code>)
+        –
+        <div class="doc-md-description">
+          <p>Dictionary which logs the edges cut by KDA during the iterations. It
+also logs the Markov chains after each iteration. Each iteration of
+the inner-loop is stored by appending the list log['edges cut']. It is
+initialized with [None] to make the indexing easier. The Markov chains
+are stored in log['Markov chains'], where the original/initial MC is
+stored at index 0.</p>
+        </div>
+      </li>
+  </ul>
+
+
+
+  <p>Methods:</p>
+  <ul>
+        <li class="field-body">
+          <b><code><a class="autorefs autorefs-internal" title="pykda.KDA.KDA.run" href="#pykda.KDA.KDA.run">run</a></code></b>
+          –
+          <div class="doc-md-description">
+            <p>This will run KDA.</p>
+          </div>
+        </li>
+        <li class="field-body">
+          <b><code><a class="autorefs autorefs-internal" title="pykda.KDA.KDA.cut_edges" href="#pykda.KDA.KDA.cut_edges">cut_edges</a></code></b>
+          –
+          <div class="doc-md-description">
+            <p>Allows one to cut manual edges in the current Markov chain to create
+a new Markov chain after normalization</p>
+          </div>
+        </li>
+  </ul>
+
+            <details class="quote">
+              <summary>Source code in <code>pykda\KDA.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">  8</span>
+<span class="normal">  9</span>
+<span class="normal"> 10</span>
+<span class="normal"> 11</span>
+<span class="normal"> 12</span>
+<span class="normal"> 13</span>
+<span class="normal"> 14</span>
+<span class="normal"> 15</span>
+<span class="normal"> 16</span>
+<span class="normal"> 17</span>
+<span class="normal"> 18</span>
+<span class="normal"> 19</span>
+<span class="normal"> 20</span>
+<span class="normal"> 21</span>
+<span class="normal"> 22</span>
+<span class="normal"> 23</span>
+<span class="normal"> 24</span>
+<span class="normal"> 25</span>
+<span class="normal"> 26</span>
+<span class="normal"> 27</span>
+<span class="normal"> 28</span>
+<span class="normal"> 29</span>
+<span class="normal"> 30</span>
+<span class="normal"> 31</span>
+<span class="normal"> 32</span>
+<span class="normal"> 33</span>
+<span class="normal"> 34</span>
+<span class="normal"> 35</span>
+<span class="normal"> 36</span>
+<span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span>
+<span class="normal">319</span>
+<span class="normal">320</span>
+<span class="normal">321</span>
+<span class="normal">322</span>
+<span class="normal">323</span>
+<span class="normal">324</span>
+<span class="normal">325</span>
+<span class="normal">326</span>
+<span class="normal">327</span>
+<span class="normal">328</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">KDA</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Kemeny Decomposition Algorithm (KDA) class.</span>
+
+<span class="sd">    KDA will iteratively cut &#39;edges&#39; to decompose an original Markov chain (MC).</span>
+<span class="sd">    An edge corresponds to a MC transition probability. The notation of Berkhout</span>
+<span class="sd">    and Heidergott (2019) is used.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    MC : MarkovChain</span>
+<span class="sd">        Current Markov chain during KDA.</span>
+<span class="sd">    log : dict</span>
+<span class="sd">        Dictionary which logs the edges cut by KDA during the iterations. It</span>
+<span class="sd">        also logs the Markov chains after each iteration. Each iteration of</span>
+<span class="sd">        the inner-loop is stored by appending the list log[&#39;edges cut&#39;]. It is</span>
+<span class="sd">        initialized with [None] to make the indexing easier. The Markov chains</span>
+<span class="sd">        are stored in log[&#39;Markov chains&#39;], where the original/initial MC is</span>
+<span class="sd">        stored at index 0.</span>
+
+<span class="sd">    Methods</span>
+<span class="sd">    -------</span>
+<span class="sd">    run()</span>
+<span class="sd">        This will run KDA.</span>
+<span class="sd">    cut_edges(*args)</span>
+<span class="sd">        Allows one to cut manual edges in the current Markov chain to create</span>
+<span class="sd">        a new Markov chain after normalization</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">original_MC</span><span class="p">:</span> <span class="n">MarkovChain</span><span class="p">,</span>
+        <span class="n">CO_A</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;CO_A_1(1)&quot;</span><span class="p">,</span>
+        <span class="n">CO_B</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;CO_B_3(0)&quot;</span><span class="p">,</span>
+        <span class="n">symmetric_cut</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">normalizer</span><span class="p">:</span> <span class="n">normalizer_type</span> <span class="o">=</span> <span class="n">standard_row_normalization</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        original_MC : MarkovChain</span>
+<span class="sd">            Original Markov chain object to which KDA will be applied.</span>
+<span class="sd">        CO_A : str</span>
+<span class="sd">            Condition of how often the Kemeny constant derivatives are being</span>
+<span class="sd">            recalculated (outer while loop in KDA). The options are:</span>
+<span class="sd">                - &#39;CO_A_1(i)&#39; = Number of times performed &lt; i</span>
+<span class="sd">                - &#39;CO_A_2(E)&#39; = Number of ergodic classes in current MC is &lt; E</span>
+<span class="sd">                - &#39;CO_A_3(C)&#39; = Number of strongly connected components in</span>
+<span class="sd">                                current MC is &lt; C</span>
+<span class="sd">        CO_B : str</span>
+<span class="sd">            Condition of how many edges are being cut per iteration (inner while</span>
+<span class="sd">            loop in KDA). The options are:</span>
+<span class="sd">                - &#39;CO_B_1(e)&#39; = Number of edges cut is &lt; e</span>
+<span class="sd">                - &#39;CO_B_2(E)&#39; = Number of ergodic classes in MC is &lt; E</span>
+<span class="sd">                - &#39;CO_B_3(q)&#39; = Not all edges with MC.KDer &lt; q are cut</span>
+<span class="sd">        symmetric_cut : bool</span>
+<span class="sd">            If True, cutting (i, j) will also cut (j, i). If False, only (i, j).</span>
+<span class="sd">        verbose : bool</span>
+<span class="sd">            If true, information will be printed, else not.</span>
+<span class="sd">        normalizer : normalizer_type</span>
+<span class="sd">            Normalizer used to create a stochastic matrix from a matrix.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">MC</span> <span class="o">=</span> <span class="n">original_MC</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span> <span class="o">=</span> <span class="p">{</span>  <span class="c1"># also log original MC after &quot;iteration 0&quot;</span>
+            <span class="s2">&quot;edges cut&quot;</span><span class="p">:</span> <span class="p">[[</span><span class="kc">None</span><span class="p">]],</span>
+            <span class="s2">&quot;Markov chains&quot;</span><span class="p">:</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">MC</span><span class="o">.</span><span class="n">copy</span><span class="p">()],</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">CO_A</span> <span class="o">=</span> <span class="n">CO_A</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">CO_A_type</span> <span class="o">=</span> <span class="n">CO_A</span><span class="p">[:</span><span class="mi">6</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_in_CO_A</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_num_in_str_brackets</span><span class="p">(</span><span class="n">CO_A</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">CO_B</span> <span class="o">=</span> <span class="n">CO_B</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">CO_B_type</span> <span class="o">=</span> <span class="n">CO_B</span><span class="p">[:</span><span class="mi">6</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_in_CO_B</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_num_in_str_brackets</span><span class="p">(</span><span class="n">CO_B</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">symmetric_cut</span> <span class="o">=</span> <span class="n">symmetric_cut</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">normalizer</span> <span class="o">=</span> <span class="n">normalizer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_num_in_str_brackets</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the number given between brackets in string s.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;(&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;)&quot;</span><span class="p">)])</span>
+
+    <span class="k">def</span> <span class="nf">condition_A</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns whether condition A is True or False.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">CO_A_type</span> <span class="o">==</span> <span class="s2">&quot;CO_A_1&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterations_count</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_in_CO_A</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">CO_A_type</span> <span class="o">==</span> <span class="s2">&quot;CO_A_2&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">MC</span><span class="o">.</span><span class="n">num_ergodic_classes</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_in_CO_A</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">CO_A_type</span> <span class="o">==</span> <span class="s2">&quot;CO_A_3&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">MC</span><span class="o">.</span><span class="n">num_strongly_connected_components</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_in_CO_A</span>
+
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Unknown condition A chosen (CO_A).&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">condition_B</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns whether condition B is True or False.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">CO_B_type</span> <span class="o">==</span> <span class="s2">&quot;CO_B_2&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">MC</span><span class="o">.</span><span class="n">num_ergodic_classes</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_in_CO_B</span>
+
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Unknown condition B chosen (CO_B).&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Runs KDA with conditions CO_A and CO_B.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">iterations_count</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># of the outer while loop of KDA</span>
+
+        <span class="c1"># start cutting till condition A fails</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">condition_A</span><span class="p">():</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">cut_till_condition_B_fails</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">iterations_count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">cut_till_condition_B_fails</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Cuts edges till condition B fails.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">CO_B_type</span> <span class="o">==</span> <span class="s2">&quot;CO_B_1&quot;</span><span class="p">:</span>
+
+            <span class="n">edges</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MC</span><span class="o">.</span><span class="n">most_connecting_edges</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_in_CO_B</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cut_edges</span><span class="p">(</span><span class="o">*</span><span class="n">edges</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">CO_B_type</span> <span class="o">==</span> <span class="s2">&quot;CO_B_2&quot;</span><span class="p">:</span>
+
+            <span class="n">row_indexes</span><span class="p">,</span> <span class="n">col_indexes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MC</span><span class="o">.</span><span class="n">sorted_edges</span><span class="p">()</span>
+            <span class="n">num_cut</span> <span class="o">=</span> <span class="mi">0</span>
+
+            <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">condition_B</span><span class="p">():</span>  <span class="c1"># inner while loop</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cut_edges</span><span class="p">(</span>
+                    <span class="n">row_indexes</span><span class="p">[</span><span class="n">num_cut</span> <span class="p">:</span> <span class="n">num_cut</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
+                    <span class="n">col_indexes</span><span class="p">[</span><span class="n">num_cut</span> <span class="p">:</span> <span class="n">num_cut</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="p">)</span>
+                <span class="n">num_cut</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">CO_B_type</span> <span class="o">==</span> <span class="s2">&quot;CO_B_3&quot;</span><span class="p">:</span>
+
+            <span class="n">edges</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MC</span><span class="o">.</span><span class="n">edges_below_threshold</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_in_CO_B</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cut_edges</span><span class="p">(</span><span class="o">*</span><span class="n">edges</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Unknown condition B chosen (CO_B).&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">cut_edges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Cut given edges in the Markov chain and normalize afterward.</span>
+
+<span class="sd">        There are different options to specify which edges to cut via args.</span>
+<span class="sd">        When self.symmetric_cut = True, also the reversed edges are cut.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        args :</span>
+<span class="sd">            There are three options for args:</span>
+<span class="sd">                1. One tuple of length 2 indicating which edge to cut.</span>
+<span class="sd">                2. One list of tuples of edges which to cut.</span>
+<span class="sd">                3. Two lists or np.ndarrays indicating which edges to cut.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">tuple</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_cut_edges</span><span class="p">([</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]])</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">row_indexes</span><span class="p">,</span> <span class="n">col_indexes</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_cut_edges</span><span class="p">(</span><span class="n">row_indexes</span><span class="p">,</span> <span class="n">col_indexes</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                    <span class="s2">&quot;Expected list of tuples or tuple in case &quot;</span>
+                    <span class="s2">&quot;one argument is given in KDA.cut_edges().&quot;</span>
+                <span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_cut_edges</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Expected 1 or 2 arguments in KDA.cut_edges().&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_cut_edges</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">row_indexes</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="nb">list</span><span class="p">,</span> <span class="n">col_indexes</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="nb">list</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Cut given edges in the Markov chain and normalize afterward.</span>
+
+<span class="sd">        When self.symmetric_cut = True, also the reversed edges are cut.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        row_indexes : np.ndarray or list</span>
+<span class="sd">            Row indexes of the edges to be cut.</span>
+<span class="sd">        col_indexes : np.ndarray or list</span>
+<span class="sd">            Columns indexes of the edges to be cut.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">symmetric_cut</span><span class="p">:</span>
+            <span class="n">row_indexes</span><span class="p">,</span> <span class="n">col_indexes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">row_indexes</span><span class="p">,</span> <span class="n">col_indexes</span><span class="p">)</span>
+            <span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">col_indexes</span><span class="p">,</span> <span class="n">row_indexes</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">MC</span><span class="o">.</span><span class="n">P</span><span class="p">[</span><span class="n">row_indexes</span><span class="p">,</span> <span class="n">col_indexes</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># cut edges</span>
+        <span class="n">new_P</span> <span class="o">=</span> <span class="n">load_transition_matrix</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MC</span><span class="o">.</span><span class="n">P</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalizer</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">MC</span> <span class="o">=</span> <span class="n">MarkovChain</span><span class="p">(</span><span class="n">new_P</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_edges</span><span class="p">(</span><span class="n">row_indexes</span><span class="p">,</span> <span class="n">col_indexes</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_for_infinite_loops</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">log_edges</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">row_indexes</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="nb">list</span><span class="p">,</span> <span class="n">col_indexes</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="nb">list</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Logs the edges that have been cut.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        row_indexes : np.ndarray or list</span>
+<span class="sd">            Row indexes of the edges that are cut.</span>
+<span class="sd">        col_indexes : np.ndarray or list</span>
+<span class="sd">            Columns indexes of the edges that are cut.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">edges</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">row_indexes</span><span class="p">,</span> <span class="n">col_indexes</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">[</span><span class="s2">&quot;edges cut&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">[</span><span class="s2">&quot;Markov chains&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MC</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="nf">report</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Prints a report of KDA.&quot;&quot;&quot;</span>
+
+        <span class="c1"># init</span>
+        <span class="n">edges_cut</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">[</span><span class="s2">&quot;edges cut&quot;</span><span class="p">]</span>
+        <span class="n">MCs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">[</span><span class="s2">&quot;Markov chains&quot;</span><span class="p">]</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">KDA report:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;===========</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;KDA settings:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Condition A: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">CO_A</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">condition_A_translator</span><span class="p">()</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Condition B: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">CO_B</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">condition_B_translator</span><span class="p">()</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Symmetric cut: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">symmetric_cut</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Initial Markov chain (MC) is:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">MCs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;KDA progress is:&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">iteration_num</span><span class="p">,</span> <span class="p">(</span><span class="n">edges_cut</span><span class="p">,</span> <span class="n">MC</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">edges_cut</span><span class="p">,</span> <span class="n">MCs</span><span class="p">)):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;* Iteration </span><span class="si">{</span><span class="n">iteration_num</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   - Edges cut: </span><span class="si">{</span><span class="n">edges_cut</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   - Ergodic classes: </span><span class="si">{</span><span class="n">MC</span><span class="o">.</span><span class="n">ergodic_classes</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   - Transient classes: </span><span class="si">{</span><span class="n">MC</span><span class="o">.</span><span class="n">transient_classes</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">scc</span> <span class="o">=</span> <span class="n">MC</span><span class="o">.</span><span class="n">strongly_connected_components</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   - Strongly connected components: </span><span class="si">{</span><span class="n">scc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">wcc</span> <span class="o">=</span> <span class="n">MC</span><span class="o">.</span><span class="n">weakly_connected_components</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   - Weakly connected components: </span><span class="si">{</span><span class="n">wcc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">check_for_infinite_loops</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Due to fixes for normalization, it may happen that the same edge is</span>
+<span class="sd">        cut over and over again. This check raises an error in that case.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">[</span><span class="s2">&quot;edges cut&quot;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">edges_cut_now</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">[</span><span class="s2">&quot;edges cut&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">edges_cut_prev</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">[</span><span class="s2">&quot;edges cut&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+            <span class="n">edges_cut_prev2</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">[</span><span class="s2">&quot;edges cut&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span>
+            <span class="n">same_edges_cut</span> <span class="o">=</span> <span class="n">edges_cut_now</span> <span class="o">&amp;</span> <span class="n">edges_cut_prev</span> <span class="o">&amp;</span> <span class="n">edges_cut_prev2</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">same_edges_cut</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">Warning</span><span class="p">(</span>
+                    <span class="s2">&quot;Possible infinite KDA loop detected: the following edges &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;may be cut over and over again: </span><span class="si">{</span><span class="n">same_edges_cut</span><span class="si">}</span><span class="s2">. &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;If you see this message more than two times, try using&quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot; another KDA setting that cuts less edges to avoid this.&quot;</span>
+                <span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_num_in_brackets</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets the number given between brackets in string s.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;(&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;)&quot;</span><span class="p">)])</span>
+
+    <span class="k">def</span> <span class="nf">condition_A_translator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Translates the condition A into something readable.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">CO_A_type</span> <span class="o">==</span> <span class="s2">&quot;CO_A_1&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;continue till </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">num_in_CO_A</span><span class="si">}</span><span class="s2"> times performed&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">CO_A_type</span> <span class="o">==</span> <span class="s2">&quot;CO_A_2&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;continue till # ergodic classes is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">num_in_CO_A</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">CO_A_type</span> <span class="o">==</span> <span class="s2">&quot;CO_A_3&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;continue till # strongly connected components &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">num_in_CO_A</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Unknown condition A chosen (CO_A).&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">condition_B_translator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Translates the condition B into something readable.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">CO_B_type</span> <span class="o">==</span> <span class="s2">&quot;CO_B_1&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;continue till </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">num_in_CO_B</span><span class="si">}</span><span class="s2"> edge(s) cut&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">CO_B_type</span> <span class="o">==</span> <span class="s2">&quot;CO_B_2&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;continue till # ergodic classes is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">num_in_CO_B</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">CO_B_type</span> <span class="o">==</span> <span class="s2">&quot;CO_B_3&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;continue till all edges with Kemeny constant derivative&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot; &lt; </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">num_in_CO_B</span><span class="si">}</span><span class="s2"> are cut&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Unknown condition B chosen (CO_B).&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">plot_progress</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Plots the Markov chains in the log.&quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">MC</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">[</span><span class="s2">&quot;Markov chains&quot;</span><span class="p">]):</span>
+            <span class="n">MC</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">file_name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Markov chain after iteration </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Markov_chain_after_KDA&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Plots the Markov chain after KDA.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">MC</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">file_name</span><span class="o">=</span><span class="n">file_name</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="pykda.KDA.KDA.__init__" class="doc doc-heading">
+          <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">original_MC</span><span class="p">,</span> <span class="n">CO_A</span><span class="o">=</span><span class="s1">&#39;CO_A_1(1)&#39;</span><span class="p">,</span> <span class="n">CO_B</span><span class="o">=</span><span class="s1">&#39;CO_B_3(0)&#39;</span><span class="p">,</span> <span class="n">symmetric_cut</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">normalizer</span><span class="o">=</span><span class="n">standard_row_normalization</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+
+
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b><code>original_MC</code></b>
+            (<code><a class="autorefs autorefs-internal" title="pykda.Markov_chain.MarkovChain" href="../Markov_chain/#pykda.Markov_chain.MarkovChain">MarkovChain</a></code>)
+        –
+        <div class="doc-md-description">
+          <p>Original Markov chain object to which KDA will be applied.</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code>CO_A</code></b>
+            (<code>str</code>, default:
+                <code>&#39;CO_A_1(1)&#39;</code>
+)
+        –
+        <div class="doc-md-description">
+          <p>Condition of how often the Kemeny constant derivatives are being
+recalculated (outer while loop in KDA). The options are:
+    - 'CO_A_1(i)' = Number of times performed &lt; i
+    - 'CO_A_2(E)' = Number of ergodic classes in current MC is &lt; E
+    - 'CO_A_3(C)' = Number of strongly connected components in
+                    current MC is &lt; C</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code>CO_B</code></b>
+            (<code>str</code>, default:
+                <code>&#39;CO_B_3(0)&#39;</code>
+)
+        –
+        <div class="doc-md-description">
+          <p>Condition of how many edges are being cut per iteration (inner while
+loop in KDA). The options are:
+    - 'CO_B_1(e)' = Number of edges cut is &lt; e
+    - 'CO_B_2(E)' = Number of ergodic classes in MC is &lt; E
+    - 'CO_B_3(q)' = Not all edges with MC.KDer &lt; q are cut</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code>symmetric_cut</code></b>
+            (<code>bool</code>, default:
+                <code>False</code>
+)
+        –
+        <div class="doc-md-description">
+          <p>If True, cutting (i, j) will also cut (j, i). If False, only (i, j).</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code>verbose</code></b>
+            (<code>bool</code>, default:
+                <code>False</code>
+)
+        –
+        <div class="doc-md-description">
+          <p>If true, information will be printed, else not.</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code>normalizer</code></b>
+            (<code><span title="pykda.normalizers.normalizer_type">normalizer_type</span></code>, default:
+                <code><a class="autorefs autorefs-internal" title="pykda.normalizers.standard_row_normalization" href="../normalizers/#pykda.normalizers.standard_row_normalization">standard_row_normalization</a></code>
+)
+        –
+        <div class="doc-md-description">
+          <p>Normalizer used to create a stochastic matrix from a matrix.</p>
+        </div>
+      </li>
+  </ul>
+
+          <details class="quote">
+            <summary>Source code in <code>pykda\KDA.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">original_MC</span><span class="p">:</span> <span class="n">MarkovChain</span><span class="p">,</span>
+    <span class="n">CO_A</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;CO_A_1(1)&quot;</span><span class="p">,</span>
+    <span class="n">CO_B</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;CO_B_3(0)&quot;</span><span class="p">,</span>
+    <span class="n">symmetric_cut</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">normalizer</span><span class="p">:</span> <span class="n">normalizer_type</span> <span class="o">=</span> <span class="n">standard_row_normalization</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    original_MC : MarkovChain</span>
+<span class="sd">        Original Markov chain object to which KDA will be applied.</span>
+<span class="sd">    CO_A : str</span>
+<span class="sd">        Condition of how often the Kemeny constant derivatives are being</span>
+<span class="sd">        recalculated (outer while loop in KDA). The options are:</span>
+<span class="sd">            - &#39;CO_A_1(i)&#39; = Number of times performed &lt; i</span>
+<span class="sd">            - &#39;CO_A_2(E)&#39; = Number of ergodic classes in current MC is &lt; E</span>
+<span class="sd">            - &#39;CO_A_3(C)&#39; = Number of strongly connected components in</span>
+<span class="sd">                            current MC is &lt; C</span>
+<span class="sd">    CO_B : str</span>
+<span class="sd">        Condition of how many edges are being cut per iteration (inner while</span>
+<span class="sd">        loop in KDA). The options are:</span>
+<span class="sd">            - &#39;CO_B_1(e)&#39; = Number of edges cut is &lt; e</span>
+<span class="sd">            - &#39;CO_B_2(E)&#39; = Number of ergodic classes in MC is &lt; E</span>
+<span class="sd">            - &#39;CO_B_3(q)&#39; = Not all edges with MC.KDer &lt; q are cut</span>
+<span class="sd">    symmetric_cut : bool</span>
+<span class="sd">        If True, cutting (i, j) will also cut (j, i). If False, only (i, j).</span>
+<span class="sd">    verbose : bool</span>
+<span class="sd">        If true, information will be printed, else not.</span>
+<span class="sd">    normalizer : normalizer_type</span>
+<span class="sd">        Normalizer used to create a stochastic matrix from a matrix.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">MC</span> <span class="o">=</span> <span class="n">original_MC</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">log</span> <span class="o">=</span> <span class="p">{</span>  <span class="c1"># also log original MC after &quot;iteration 0&quot;</span>
+        <span class="s2">&quot;edges cut&quot;</span><span class="p">:</span> <span class="p">[[</span><span class="kc">None</span><span class="p">]],</span>
+        <span class="s2">&quot;Markov chains&quot;</span><span class="p">:</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">MC</span><span class="o">.</span><span class="n">copy</span><span class="p">()],</span>
+    <span class="p">}</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">CO_A</span> <span class="o">=</span> <span class="n">CO_A</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">CO_A_type</span> <span class="o">=</span> <span class="n">CO_A</span><span class="p">[:</span><span class="mi">6</span><span class="p">]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">num_in_CO_A</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_num_in_str_brackets</span><span class="p">(</span><span class="n">CO_A</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">CO_B</span> <span class="o">=</span> <span class="n">CO_B</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">CO_B_type</span> <span class="o">=</span> <span class="n">CO_B</span><span class="p">[:</span><span class="mi">6</span><span class="p">]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">num_in_CO_B</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_num_in_str_brackets</span><span class="p">(</span><span class="n">CO_B</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">symmetric_cut</span> <span class="o">=</span> <span class="n">symmetric_cut</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">normalizer</span> <span class="o">=</span> <span class="n">normalizer</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="pykda.KDA.KDA.check_for_infinite_loops" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">check_for_infinite_loops</span><span class="p">()</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Due to fixes for normalization, it may happen that the same edge is
+cut over and over again. This check raises an error in that case.</p>
+
+          <details class="quote">
+            <summary>Source code in <code>pykda\KDA.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">check_for_infinite_loops</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Due to fixes for normalization, it may happen that the same edge is</span>
+<span class="sd">    cut over and over again. This check raises an error in that case.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">[</span><span class="s2">&quot;edges cut&quot;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">edges_cut_now</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">[</span><span class="s2">&quot;edges cut&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">edges_cut_prev</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">[</span><span class="s2">&quot;edges cut&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">edges_cut_prev2</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">[</span><span class="s2">&quot;edges cut&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span>
+        <span class="n">same_edges_cut</span> <span class="o">=</span> <span class="n">edges_cut_now</span> <span class="o">&amp;</span> <span class="n">edges_cut_prev</span> <span class="o">&amp;</span> <span class="n">edges_cut_prev2</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">same_edges_cut</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Warning</span><span class="p">(</span>
+                <span class="s2">&quot;Possible infinite KDA loop detected: the following edges &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;may be cut over and over again: </span><span class="si">{</span><span class="n">same_edges_cut</span><span class="si">}</span><span class="s2">. &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;If you see this message more than two times, try using&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot; another KDA setting that cuts less edges to avoid this.&quot;</span>
+            <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="pykda.KDA.KDA.condition_A" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">condition_A</span><span class="p">()</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns whether condition A is True or False.</p>
+
+          <details class="quote">
+            <summary>Source code in <code>pykda\KDA.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">condition_A</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns whether condition A is True or False.&quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">CO_A_type</span> <span class="o">==</span> <span class="s2">&quot;CO_A_1&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterations_count</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_in_CO_A</span>
+
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">CO_A_type</span> <span class="o">==</span> <span class="s2">&quot;CO_A_2&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">MC</span><span class="o">.</span><span class="n">num_ergodic_classes</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_in_CO_A</span>
+
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">CO_A_type</span> <span class="o">==</span> <span class="s2">&quot;CO_A_3&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">MC</span><span class="o">.</span><span class="n">num_strongly_connected_components</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_in_CO_A</span>
+
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Unknown condition A chosen (CO_A).&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="pykda.KDA.KDA.condition_A_translator" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">condition_A_translator</span><span class="p">()</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Translates the condition A into something readable.</p>
+
+          <details class="quote">
+            <summary>Source code in <code>pykda\KDA.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span>
+<span class="normal">300</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">condition_A_translator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Translates the condition A into something readable.&quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">CO_A_type</span> <span class="o">==</span> <span class="s2">&quot;CO_A_1&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;continue till </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">num_in_CO_A</span><span class="si">}</span><span class="s2"> times performed&quot;</span>
+
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">CO_A_type</span> <span class="o">==</span> <span class="s2">&quot;CO_A_2&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;continue till # ergodic classes is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">num_in_CO_A</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">CO_A_type</span> <span class="o">==</span> <span class="s2">&quot;CO_A_3&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;continue till # strongly connected components &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">num_in_CO_A</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Unknown condition A chosen (CO_A).&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="pykda.KDA.KDA.condition_B" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">condition_B</span><span class="p">()</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns whether condition B is True or False.</p>
+
+          <details class="quote">
+            <summary>Source code in <code>pykda\KDA.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">condition_B</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns whether condition B is True or False.&quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">CO_B_type</span> <span class="o">==</span> <span class="s2">&quot;CO_B_2&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">MC</span><span class="o">.</span><span class="n">num_ergodic_classes</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_in_CO_B</span>
+
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Unknown condition B chosen (CO_B).&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="pykda.KDA.KDA.condition_B_translator" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">condition_B_translator</span><span class="p">()</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Translates the condition B into something readable.</p>
+
+          <details class="quote">
+            <summary>Source code in <code>pykda\KDA.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span>
+<span class="normal">317</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">condition_B_translator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Translates the condition B into something readable.&quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">CO_B_type</span> <span class="o">==</span> <span class="s2">&quot;CO_B_1&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;continue till </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">num_in_CO_B</span><span class="si">}</span><span class="s2"> edge(s) cut&quot;</span>
+
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">CO_B_type</span> <span class="o">==</span> <span class="s2">&quot;CO_B_2&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;continue till # ergodic classes is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">num_in_CO_B</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">CO_B_type</span> <span class="o">==</span> <span class="s2">&quot;CO_B_3&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;continue till all edges with Kemeny constant derivative&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot; &lt; </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">num_in_CO_B</span><span class="si">}</span><span class="s2"> are cut&quot;</span>
+        <span class="p">)</span>
+
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Unknown condition B chosen (CO_B).&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="pykda.KDA.KDA.cut_edges" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">cut_edges</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Cut given edges in the Markov chain and normalize afterward.</p>
+<p>There are different options to specify which edges to cut via args.
+When self.symmetric_cut = True, also the reversed edges are cut.</p>
+
+
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b><code>args</code></b>
+        –
+        <div class="doc-md-description">
+          <p>There are three options for args:
+    1. One tuple of length 2 indicating which edge to cut.
+    2. One list of tuples of edges which to cut.
+    3. Two lists or np.ndarrays indicating which edges to cut.</p>
+        </div>
+      </li>
+  </ul>
+
+          <details class="quote">
+            <summary>Source code in <code>pykda\KDA.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">cut_edges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Cut given edges in the Markov chain and normalize afterward.</span>
+
+<span class="sd">    There are different options to specify which edges to cut via args.</span>
+<span class="sd">    When self.symmetric_cut = True, also the reversed edges are cut.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    args :</span>
+<span class="sd">        There are three options for args:</span>
+<span class="sd">            1. One tuple of length 2 indicating which edge to cut.</span>
+<span class="sd">            2. One list of tuples of edges which to cut.</span>
+<span class="sd">            3. Two lists or np.ndarrays indicating which edges to cut.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_cut_edges</span><span class="p">([</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]])</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">row_indexes</span><span class="p">,</span> <span class="n">col_indexes</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_cut_edges</span><span class="p">(</span><span class="n">row_indexes</span><span class="p">,</span> <span class="n">col_indexes</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                <span class="s2">&quot;Expected list of tuples or tuple in case &quot;</span>
+                <span class="s2">&quot;one argument is given in KDA.cut_edges().&quot;</span>
+            <span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cut_edges</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Expected 1 or 2 arguments in KDA.cut_edges().&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="pykda.KDA.KDA.cut_till_condition_B_fails" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">cut_till_condition_B_fails</span><span class="p">()</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Cuts edges till condition B fails.</p>
+
+          <details class="quote">
+            <summary>Source code in <code>pykda\KDA.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">cut_till_condition_B_fails</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Cuts edges till condition B fails.&quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">CO_B_type</span> <span class="o">==</span> <span class="s2">&quot;CO_B_1&quot;</span><span class="p">:</span>
+
+        <span class="n">edges</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MC</span><span class="o">.</span><span class="n">most_connecting_edges</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_in_CO_B</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cut_edges</span><span class="p">(</span><span class="o">*</span><span class="n">edges</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">CO_B_type</span> <span class="o">==</span> <span class="s2">&quot;CO_B_2&quot;</span><span class="p">:</span>
+
+        <span class="n">row_indexes</span><span class="p">,</span> <span class="n">col_indexes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MC</span><span class="o">.</span><span class="n">sorted_edges</span><span class="p">()</span>
+        <span class="n">num_cut</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">condition_B</span><span class="p">():</span>  <span class="c1"># inner while loop</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cut_edges</span><span class="p">(</span>
+                <span class="n">row_indexes</span><span class="p">[</span><span class="n">num_cut</span> <span class="p">:</span> <span class="n">num_cut</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="n">col_indexes</span><span class="p">[</span><span class="n">num_cut</span> <span class="p">:</span> <span class="n">num_cut</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
+            <span class="p">)</span>
+            <span class="n">num_cut</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">CO_B_type</span> <span class="o">==</span> <span class="s2">&quot;CO_B_3&quot;</span><span class="p">:</span>
+
+        <span class="n">edges</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MC</span><span class="o">.</span><span class="n">edges_below_threshold</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_in_CO_B</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cut_edges</span><span class="p">(</span><span class="o">*</span><span class="n">edges</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Unknown condition B chosen (CO_B).&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="pykda.KDA.KDA.get_num_in_brackets" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">get_num_in_brackets</span><span class="p">(</span><span class="n">s</span><span class="p">)</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Gets the number given between brackets in string s.</p>
+
+          <details class="quote">
+            <summary>Source code in <code>pykda\KDA.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">get_num_in_brackets</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Gets the number given between brackets in string s.&quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;(&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;)&quot;</span><span class="p">)])</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="pykda.KDA.KDA.get_num_in_str_brackets" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">get_num_in_str_brackets</span><span class="p">(</span><span class="n">s</span><span class="p">)</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns the number given between brackets in string s.</p>
+
+          <details class="quote">
+            <summary>Source code in <code>pykda\KDA.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">get_num_in_str_brackets</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the number given between brackets in string s.&quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;(&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;)&quot;</span><span class="p">)])</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="pykda.KDA.KDA.log_edges" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">log_edges</span><span class="p">(</span><span class="n">row_indexes</span><span class="p">,</span> <span class="n">col_indexes</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Logs the edges that have been cut.</p>
+
+
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b><code>row_indexes</code></b>
+            (<code><span title="numpy.ndarray">ndarray</span> or list</code>)
+        –
+        <div class="doc-md-description">
+          <p>Row indexes of the edges that are cut.</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code>col_indexes</code></b>
+            (<code><span title="numpy.ndarray">ndarray</span> or list</code>)
+        –
+        <div class="doc-md-description">
+          <p>Columns indexes of the edges that are cut.</p>
+        </div>
+      </li>
+  </ul>
+
+          <details class="quote">
+            <summary>Source code in <code>pykda\KDA.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">log_edges</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span> <span class="n">row_indexes</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="nb">list</span><span class="p">,</span> <span class="n">col_indexes</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="nb">list</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Logs the edges that have been cut.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    row_indexes : np.ndarray or list</span>
+<span class="sd">        Row indexes of the edges that are cut.</span>
+<span class="sd">    col_indexes : np.ndarray or list</span>
+<span class="sd">        Columns indexes of the edges that are cut.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">edges</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">row_indexes</span><span class="p">,</span> <span class="n">col_indexes</span><span class="p">)]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">[</span><span class="s2">&quot;edges cut&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">[</span><span class="s2">&quot;Markov chains&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MC</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="pykda.KDA.KDA.plot" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">plot</span><span class="p">(</span><span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;Markov_chain_after_KDA&#39;</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Plots the Markov chain after KDA.</p>
+
+          <details class="quote">
+            <summary>Source code in <code>pykda\KDA.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">325</span>
+<span class="normal">326</span>
+<span class="normal">327</span>
+<span class="normal">328</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Markov_chain_after_KDA&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plots the Markov chain after KDA.&quot;&quot;&quot;</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">MC</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">file_name</span><span class="o">=</span><span class="n">file_name</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="pykda.KDA.KDA.plot_progress" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">plot_progress</span><span class="p">()</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Plots the Markov chains in the log.</p>
+
+          <details class="quote">
+            <summary>Source code in <code>pykda\KDA.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">319</span>
+<span class="normal">320</span>
+<span class="normal">321</span>
+<span class="normal">322</span>
+<span class="normal">323</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">plot_progress</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plots the Markov chains in the log.&quot;&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">MC</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">[</span><span class="s2">&quot;Markov chains&quot;</span><span class="p">]):</span>
+        <span class="n">MC</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">file_name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Markov chain after iteration </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="pykda.KDA.KDA.report" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">report</span><span class="p">()</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Prints a report of KDA.</p>
+
+          <details class="quote">
+            <summary>Source code in <code>pykda\KDA.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">report</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Prints a report of KDA.&quot;&quot;&quot;</span>
+
+    <span class="c1"># init</span>
+    <span class="n">edges_cut</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">[</span><span class="s2">&quot;edges cut&quot;</span><span class="p">]</span>
+    <span class="n">MCs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">[</span><span class="s2">&quot;Markov chains&quot;</span><span class="p">]</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">KDA report:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;===========</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;KDA settings:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Condition A: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">CO_A</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">condition_A_translator</span><span class="p">()</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Condition B: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">CO_B</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">condition_B_translator</span><span class="p">()</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- Symmetric cut: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">symmetric_cut</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Initial Markov chain (MC) is:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">MCs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;KDA progress is:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">iteration_num</span><span class="p">,</span> <span class="p">(</span><span class="n">edges_cut</span><span class="p">,</span> <span class="n">MC</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">edges_cut</span><span class="p">,</span> <span class="n">MCs</span><span class="p">)):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;* Iteration </span><span class="si">{</span><span class="n">iteration_num</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   - Edges cut: </span><span class="si">{</span><span class="n">edges_cut</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   - Ergodic classes: </span><span class="si">{</span><span class="n">MC</span><span class="o">.</span><span class="n">ergodic_classes</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   - Transient classes: </span><span class="si">{</span><span class="n">MC</span><span class="o">.</span><span class="n">transient_classes</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">scc</span> <span class="o">=</span> <span class="n">MC</span><span class="o">.</span><span class="n">strongly_connected_components</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   - Strongly connected components: </span><span class="si">{</span><span class="n">scc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">wcc</span> <span class="o">=</span> <span class="n">MC</span><span class="o">.</span><span class="n">weakly_connected_components</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   - Weakly connected components: </span><span class="si">{</span><span class="n">wcc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="pykda.KDA.KDA.run" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">run</span><span class="p">()</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Runs KDA with conditions CO_A and CO_B.</p>
+
+          <details class="quote">
+            <summary>Source code in <code>pykda\KDA.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Runs KDA with conditions CO_A and CO_B.&quot;&quot;&quot;</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">iterations_count</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># of the outer while loop of KDA</span>
+
+    <span class="c1"># start cutting till condition A fails</span>
+    <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">condition_A</span><span class="p">():</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">cut_till_condition_B_fails</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iterations_count</span> <span class="o">+=</span> <span class="mi">1</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+
+</div>
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="mailto:<joost.berkhout@vu.nl>" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480v-83.6c0-4 1.5-7.8 4.2-10.7l167.6-182.9c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8l-88.3-44.2C7.1 311.3.3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/JoostBerkhout/PyKDA" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.8fd75fb4.min.js"></script>
+      
+    
+  </body>
+</html>
