@@ -435,7 +435,7 @@ class MarkovChain:
         hover_text: list[str] | None = None,
         notebook: bool = False,
         **kwargs,
-    ) -> None:
+    ) -> None:  # pragma: no cover
         """Plots the Markov chain as a directed graph.
 
         Parameters
