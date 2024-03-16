@@ -27,6 +27,14 @@ mkdocs = "^1.5.3"
 mkdocs-material = "^9.5.11"
 mkdocstrings = {extras = ["python"], version = "^0.24.1"}
 
+# This optional docs group is needed to run the examples locally. It is not
+# required by the package itself.
+[tool.poetry.group.examples]
+optional = true
+
+[tool.poetry.group.examples.dependencies]
+jupyter = "^1.0.0"
+
 [tool.pytest.ini_options]
 addopts = "--cov=PyKDA --cov-report=xml"
 

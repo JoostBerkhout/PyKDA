@@ -2,14 +2,15 @@ site_name: PyKDA
 
 nav:
   - Home: index.md
-  - Examples:
-      - examples.md
+  - Installation instructions: installation.md
+  - Examples: examples.md
   - API reference:
       - references/Markov_chain.md
       - references/KDA.md
       - references/normalizers.md
       - references/loaders.md
       - references/utilities.md
+      - references/constants.md
 
 theme:
   name: material

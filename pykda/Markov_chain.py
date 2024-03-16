@@ -1,3 +1,7 @@
+"""
+Contains the MarkovChain class which captures a discrete time Markov chain with
+given transition matrix P.
+"""
 import copy
 from functools import cached_property
 from typing import List, Tuple

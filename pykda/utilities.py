@@ -1,3 +1,6 @@
+"""
+Contains general utility functions for the package.
+"""
 from typing import Tuple
 
 import numpy as np

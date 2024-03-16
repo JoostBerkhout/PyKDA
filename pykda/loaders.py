@@ -1,3 +1,6 @@
+"""
+Contains functions to load transition matrices from arrays or predefined csv's.
+"""
 from importlib.resources import read_text
 from io import StringIO
 from typing import List

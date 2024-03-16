@@ -1,3 +1,6 @@
+"""
+Contains the Kemeny Decomposition Algorithm (KDA) class.
+"""
 import numpy as np
 
 from pykda.Markov_chain import MarkovChain
@@ -316,16 +319,19 @@ class KDA:
 
         raise Exception("Unknown condition B chosen (CO_B).")
 
-    def plot_progress(self):
-        """Plots the Markov chains in the log."""
+    def plot_progress(self, **kwargs):  # pragma: no cover
+        """Plots the Markov chains in the log. The kwargs are passed to the
+        plot method of the Markov chain. Refer to MarkovChain.plot() for more
+        details."""
 
         for i, MC in enumerate(self.log["Markov chains"]):
-            MC.plot(file_name=f"Markov chain after iteration {i}")
+            MC.plot(**kwargs)
 
-    def plot(self, file_name: str = "Markov_chain_after_KDA"):
-        """Plots the Markov chain after KDA."""
+    def plot(self, **kwargs):  # pragma: no cover
+        """Plots the Markov chain after KDA. Refer to MarkovChain.plot() for
+        more details."""
 
-        self.MC.plot(file_name=file_name)
+        self.MC.plot(**kwargs)
 
 
 if __name__ == "__main__":  # pragma: no cover
@@ -349,13 +355,13 @@ if __name__ == "__main__":  # pragma: no cover
         original_MC=MC, CO_A="CO_A_1(1)", CO_B="CO_B_3(0)", symmetric_cut=False
     )
     kda.run()
-    kda.plot("Courtois_matrix_after_KDA_1_0")
+    kda.plot(file_name="Courtois_matrix_after_KDA_1_0")
 
     kda2 = KDA(
         original_MC=MC, CO_A="CO_A_2(3)", CO_B="CO_B_1(1)", symmetric_cut=False
     )
     kda2.run()
-    kda2.plot("Courtois_matrix_after_KDA_2_1")
+    kda2.plot(file_name="Courtois_matrix_after_KDA_2_1")
 
     name = "Zacharys_karate_club"
     MC = MarkovChain(name)  # load the pre-defined Courtois matrix
@@ -365,4 +371,4 @@ if __name__ == "__main__":  # pragma: no cover
         original_MC=MC, CO_A="CO_A_1(1)", CO_B="CO_B_3(0)", symmetric_cut=False
     )
     kda.run()
-    kda.plot("Zachary_after_KDA_1_0")
+    kda.plot(file_name="Zachary_after_KDA_1_0")
