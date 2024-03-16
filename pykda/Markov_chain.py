@@ -433,6 +433,7 @@ class MarkovChain:
         file_name: str | None = None,
         labels: list[str] | None = None,
         hover_text: list[str] | None = None,
+        notebook: bool = False,
         **kwargs,
     ) -> None:
         """Plots the Markov chain as a directed graph.
@@ -445,6 +446,9 @@ class MarkovChain:
             Labels for the states.
         hover_text : list[str]
             Text for the states which are visible when hovered over.
+        notebook : bool
+            If True, the graph is plotted in a Jupyter notebook, e.g., using
+            Google Colab. Default is False.
         kwargs
             Additional keyword arguments to be passed to pyvis.
 
@@ -459,7 +463,14 @@ class MarkovChain:
         if hover_text is None:
             hover_text = labels
 
-        net = Network(directed=True)
+        if notebook:
+            net = Network(
+                directed=True,
+                notebook=True,
+                cdn_resources="in_line",  # option needed in Google Colab
+            )
+        else:
+            net = Network(directed=True)
 
         for i in range(self.num_states):
             net.add_node(
@@ -481,7 +492,7 @@ class MarkovChain:
                     )
 
         net.force_atlas_2based()
-        net.show(file_name + ".html", notebook=False)
+        net.show(file_name + ".html", notebook=notebook)
 
 
 if __name__ == "__main__":  # pragma: no cover
