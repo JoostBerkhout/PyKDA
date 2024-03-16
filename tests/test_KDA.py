@@ -206,7 +206,7 @@ def test_check_for_infinite_loops():
 
     # test for infinite loop
     kda = KDA(MC, "CO_A_1(3)", "CO_B_1(1)", False, True)
-    with raises(Exception):
+    with raises(Warning):
         kda.run()
 
 

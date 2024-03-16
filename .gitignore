@@ -74,3 +74,10 @@ venv/
 
 # macOS
 *.DS_Store
+
+# some folders to ignore
+examples/results
+site/
+
+*.html
+*.ini

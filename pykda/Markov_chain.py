@@ -3,9 +3,14 @@ from functools import cached_property
 from typing import List, Tuple
 
 import numpy as np
+from pyvis.network import Network
 from tarjan import tarjan
 
-from pykda.loaders import load_transition_matrix
+from pykda import constants
+from pykda.loaders import (
+    load_predefined_transition_matrix,
+    load_transition_matrix,
+)
 from pykda.utilities import create_graph_dict
 
 
@@ -18,12 +23,14 @@ class MarkovChain:
 
     Parameters
     ----------
-    P : np.ndarray or list[list]
-        Probability transition matrix.
+    P : np.ndarray or list[list] or str
+        Probability transition matrix. If a string is given, it is assumed it is
+        the name of one of the predefined transition matrices from the folder
+        data.
 
     """
 
-    def __init__(self, P: np.ndarray | List[List]) -> None:
+    def __init__(self, P: np.ndarray | List[List] | str) -> None:
         self.P = P
 
     def __str__(self):  # pragma: no cover
@@ -43,10 +50,13 @@ class MarkovChain:
         return self._P
 
     @P.setter
-    def P(self, P: np.ndarray | List[List]) -> None:
+    def P(self, P: np.ndarray | List[List] | str) -> None:
         """Setter for probability transition matrix."""
 
-        self._P = load_transition_matrix(P)
+        if isinstance(P, str):
+            self._P = load_predefined_transition_matrix(P)
+        else:
+            self._P = load_transition_matrix(P)
 
     @cached_property
     def num_states(self) -> int:
@@ -184,6 +194,21 @@ class MarkovChain:
         return np.linalg.solve(Z.T, v)
 
     @cached_property
+    def Google_page_rank(self, d: float = 0.85) -> np.ndarray:
+        """Google's PageRank of the Markov chain.
+
+        Parameters
+        ----------
+        d : float
+            Damping factor in (0, 1). Default is 0.85.
+
+        """
+
+        new_P = d * self.P + (1 - d) * self.ones / self.num_states
+
+        return MarkovChain(new_P).stationary_distribution
+
+    @cached_property
     def deviation_matrix_transient_part(self) -> np.ndarray:
         """Deviation matrix of the transient part of the Markov chain.
 
@@ -306,7 +331,8 @@ class MarkovChain:
         self._transient_classes = []
 
         for scc in self.strongly_connected_components:
-            if np.isclose(np.sum(self.P[np.ix_(scc, scc)]), len(scc)):
+            mass_out = np.abs(np.sum(self.P[np.ix_(scc, scc)]) - len(scc))
+            if mass_out < constants.VALUE_ZERO:
                 # no 'outgoing' probabilities: scc is an ergodic class
                 self._ergodic_classes.append(scc)
             else:
@@ -335,7 +361,7 @@ class MarkovChain:
         ordered_idxs = np.argsort(self.Kemeny_constant_derivatives, axis=None)
 
         if existing_edges_only:
-            existing_idxs = np.flatnonzero(self.P > 0)
+            existing_idxs = np.flatnonzero(self.P > constants.VALUE_ZERO)
             ordered_idxs = [x for x in ordered_idxs if x in existing_idxs]
 
         row_idxs, col_idxs = np.unravel_index(ordered_idxs, self.P.shape)
@@ -402,6 +428,61 @@ class MarkovChain:
 
         return row_idxs[:num_edges], col_idxs[:num_edges]
 
+    def plot(
+        self,
+        file_name: str | None = None,
+        labels: list[str] | None = None,
+        hover_text: list[str] | None = None,
+        **kwargs,
+    ) -> None:
+        """Plots the Markov chain as a directed graph.
+
+        Parameters
+        ----------
+        file_name : str
+            File name for the html file to be saved.
+        labels : list[str]
+            Labels for the states.
+        hover_text : list[str]
+            Text for the states which are visible when hovered over.
+        kwargs
+            Additional keyword arguments to be passed to pyvis.
+
+        """
+
+        if file_name is None:
+            file_name = "mygraph"
+
+        if labels is None:
+            labels = [str(i) for i in range(self.num_states)]
+
+        if hover_text is None:
+            hover_text = labels
+
+        net = Network(directed=True)
+
+        for i in range(self.num_states):
+            net.add_node(
+                i,
+                value=self.Google_page_rank[i, 0],
+                label=labels[i],
+                title=hover_text[i],
+            )
+
+        for i in range(self.num_states):
+            for j in range(self.num_states):
+                if self.P[i, j] > constants.VALUE_ZERO:
+                    net.add_edge(
+                        i,
+                        j,
+                        title=self.P[i, j],
+                        weight=self.P[i, j],
+                        arrows="to",
+                    )
+
+        net.force_atlas_2based()
+        net.show(file_name + ".html", notebook=False)
+
 
 if __name__ == "__main__":  # pragma: no cover
 
@@ -413,6 +494,17 @@ if __name__ == "__main__":  # pragma: no cover
         ]
     )
     MC = MarkovChain(P)
+
+    MC.plot(
+        labels=["1", "2", "3"],
+        hover_text=["A", "B", "C"],
+    )
+
+    MC = MarkovChain("land_of_Oz")
+    MC.plot("land of Oz")
+
+    MC = MarkovChain("Courtois_matrix")
+    MC.plot("Courtois matrix")
 
     print(MC.ergodic_classes)
     print(MC.transient_classes)

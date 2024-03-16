@@ -1,3 +1,5 @@
+from importlib.resources import read_text
+from io import StringIO
 from typing import List
 
 import numpy as np
@@ -56,3 +58,33 @@ def load_transition_matrix(
         A[rows_zero_sums, rows_zero_sums] = 1
 
     return normalizer(A)
+
+
+def load_predefined_transition_matrix(
+    name: str, normalizer: normalizer_type = standard_row_normalization
+) -> np.ndarray:
+    """
+    Load a predefined csv file from the data folder as transition matrix. The
+    data is normalized when needed.
+
+    Parameters
+    ----------
+    name : str
+        Name of the transition matrix to be loaded.
+    normalizer : Callable[[np.ndarray], np.ndarray], optional
+        Normalization function used to create a stochastic matrix from a matrix
+        A, by default standard_row_normalization. See normalizers.py for
+        pre-defined options.
+
+    Returns
+    -------
+    np.ndarray
+        Transition matrix of a Markov chain.
+
+    """
+
+    csv_string = read_text("pykda.data", f"{name}.csv")
+    csv_file = StringIO(csv_string)
+    data = np.genfromtxt(csv_file, delimiter=",")
+
+    return load_transition_matrix(data)

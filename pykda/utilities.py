@@ -3,6 +3,8 @@ from typing import Tuple
 import numpy as np
 from numpy import bool_
 
+from pykda import constants
+
 
 def is_stochastic_matrix(A: np.ndarray) -> bool:
     """
@@ -55,7 +57,7 @@ def has_positive_row_sums(A: np.ndarray) -> bool_:
         True if the row sums of A are positive, False otherwise.
 
     """
-    return (A.sum(axis=1) > 0).all()
+    return (A.sum(axis=1) > constants.VALUE_ZERO).all()
 
 
 def row_sums_are_1(A: np.ndarray) -> bool:
@@ -73,7 +75,7 @@ def row_sums_are_1(A: np.ndarray) -> bool:
         True if the row sums of A are equal to one, False otherwise.
 
     """
-    return np.all(np.isclose(A.sum(axis=1), 1))
+    return np.all(np.abs(A.sum(axis=1) - 1) < constants.VALUE_ZERO)
 
 
 def eigenvec_centrality(A: np.ndarray) -> Tuple[np.ndarray, float]:
@@ -140,7 +142,10 @@ def create_graph_dict(A: np.ndarray) -> dict:
         graph[i] gives a list of nodes that can be reached from node i.
     """
 
-    return {i: np.where(A[i] > 0)[0].tolist() for i in range(len(A))}
+    return {
+        i: np.where(A[i] > constants.VALUE_ZERO)[0].tolist()
+        for i in range(len(A))
+    }
 
 
 def perturb_stochastic_matrix(

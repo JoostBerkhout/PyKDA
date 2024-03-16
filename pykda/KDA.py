@@ -64,10 +64,10 @@ class KDA:
                 - 'CO_B_3(q)' = Not all edges with MC.KDer < q are cut
         symmetric_cut : bool
             If True, cutting (i, j) will also cut (j, i). If False, only (i, j).
-        noralizer : normalizer_type
-            Normalizer used to create a stochastic matrix from a matrix.
         verbose : bool
             If true, information will be printed, else not.
+        normalizer : normalizer_type
+            Normalizer used to create a stochastic matrix from a matrix.
         """
 
         self.MC = original_MC.copy()
@@ -263,16 +263,17 @@ class KDA:
         cut over and over again. This check raises an error in that case.
         """
 
-        if len(self.log["edges cut"]) > 1:
+        if len(self.log["edges cut"]) > 2:
             edges_cut_now = set(self.log["edges cut"][-1])
             edges_cut_prev = set(self.log["edges cut"][-2])
-            same_edges_cut = edges_cut_now.intersection(edges_cut_prev)
+            edges_cut_prev2 = set(self.log["edges cut"][-3])
+            same_edges_cut = edges_cut_now & edges_cut_prev & edges_cut_prev2
             if len(same_edges_cut) > 0:
-                raise Exception(
-                    "Infinite KDA loop detected: the following edges "
-                    f"are being cut over and over again: {same_edges_cut}. "
-                    f"Try using another KDA setting that cuts less edges to"
-                    f"avoid this."
+                raise Warning(
+                    "Possible infinite KDA loop detected: the following edges "
+                    f"may be cut over and over again: {same_edges_cut}. "
+                    f"If you see this message more than two times, try using"
+                    f" another KDA setting that cuts less edges to avoid this."
                 )
 
     @staticmethod
@@ -315,12 +316,25 @@ class KDA:
 
         raise Exception("Unknown condition B chosen (CO_B).")
 
+    def plot_progress(self):
+        """Plots the Markov chains in the log."""
+
+        for i, MC in enumerate(self.log["Markov chains"]):
+            MC.plot(file_name=f"Markov chain after iteration {i}")
+
+    def plot(self, file_name: str = "Markov_chain_after_KDA"):
+        """Plots the Markov chain after KDA."""
+
+        self.MC.plot(file_name=file_name)
+
 
 if __name__ == "__main__":  # pragma: no cover
 
-    MC = MarkovChain(
-        np.array([[0.5, 0.25, 0.25], [0.5, 0, 0.5], [0.25, 0.25, 0.5]])
-    )
+    # the following is used for testing purposes
+
+    # MC = MarkovChain(
+    #     np.array([[0.5, 0.25, 0.25], [0.5, 0, 0.5], [0.25, 0.25, 0.5]])
+    # )
     # # MC = MarkovChain(
     # #     np.array(
     # #         [[1, 0], [0.5, 0.5]]
@@ -330,6 +344,25 @@ if __name__ == "__main__":  # pragma: no cover
     # kda = KDA(MC, 'CO_A_1(1)', f'CO_B_3(0)', False, True)
     # kda.cut_edges([0, 1], [1, 2])
     #
-    kda = KDA(MC, "CO_A_1(1)", "CO_B_2(2)", True, True)
+    MC = MarkovChain("Courtois_matrix")
+    kda = KDA(
+        original_MC=MC, CO_A="CO_A_1(1)", CO_B="CO_B_3(0)", symmetric_cut=False
+    )
     kda.run()
-    kda.report()
+    kda.plot("Courtois_matrix_after_KDA_1_0")
+
+    kda2 = KDA(
+        original_MC=MC, CO_A="CO_A_2(3)", CO_B="CO_B_1(1)", symmetric_cut=False
+    )
+    kda2.run()
+    kda2.plot("Courtois_matrix_after_KDA_2_1")
+
+    name = "Zacharys_karate_club"
+    MC = MarkovChain(name)  # load the pre-defined Courtois matrix
+    MC.plot(file_name=name)
+
+    kda = KDA(
+        original_MC=MC, CO_A="CO_A_1(1)", CO_B="CO_B_3(0)", symmetric_cut=False
+    )
+    kda.run()
+    kda.plot("Zachary_after_KDA_1_0")
