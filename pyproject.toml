@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pykda"
-version = "0.7.0"
+version = "0.9.0"
 description = ""
 authors = ["Joost Berkhout <joost.berkhout@vu.nl>"]
 readme = "README.md"
