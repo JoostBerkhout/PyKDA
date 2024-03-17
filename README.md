@@ -42,7 +42,7 @@ This gives `[0.226 0.156 0.23  0.232 0.156]`. And we can plot the Markov chain:
 MC.plot(file_name="An artificial Markov chain")
 ```
 
-<img src="https://github.com/JoostBerkhout/PyKDA/blob/main/docs/images/plot_readme_example.JPG" width="250">
+<img src="https://github.com/JoostBerkhout/PyKDA/blob/main/docs/images/plot_readme_example.JPG" width="280">
 
 Let us now decompose the Markov chain into clusters using KDA. We start by
 initializing an `KDA` object using the Markov chain and the KDA settings (such
@@ -61,7 +61,7 @@ kda.run()
 kda.plot(file_name="An artificial Markov chain after KDA_A1_1_B3_0")
 ```
 
-<img src="https://github.com/JoostBerkhout/PyKDA/blob/main/docs/images/plot_readme_example_after_KDA_A1_1_B3_0.JPG" width="250">
+<img src="https://github.com/JoostBerkhout/PyKDA/blob/main/docs/images/plot_readme_example_after_KDA_A1_1_B3_0.JPG" width="280">
 
 We can study the resulting Markov chain in more detail via the current Markov chain
 attribute `MC` of the `KDA` object.
@@ -99,7 +99,7 @@ kda2.plot(file_name="An artificial Markov chain after KDA_A2_2_B1_1")
 ```
 which gives (edges (4, 0) and (1, 4) are cut in two iterations):
 
-<img src="https://github.com/JoostBerkhout/PyKDA/blob/main/docs/images/plot_readme_example_after_KDA_A2_2_B1_1.JPG" width="250">
+<img src="https://github.com/JoostBerkhout/PyKDA/blob/main/docs/images/plot_readme_example_after_KDA_A2_2_B1_1.JPG" width="280">
 
 ### How to learn more about `pykda`?
 To learn more about `pykda` have a look at the [documentation](https://joostberkhout.github.io/PyKDA/). There, you can
