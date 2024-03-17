@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#pykda" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -203,6 +203,15 @@
   <a href="#about" class="md-nav__link">
     <span class="md-ellipsis">
       About
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contributing
     </span>
   </a>
   
@@ -469,6 +478,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#contributing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contributing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#acknowledgement" class="md-nav__link">
     <span class="md-ellipsis">
       Acknowledgement
@@ -492,16 +510,20 @@
                   
 
 
-<h1 id="pykda">PyKDA</h1>
-<p>Welcome to the Python package <code>pykda</code>. It implements the Kemeny Decomposition 
-Algorithm (KDA) from <a href="https://research.vu.nl/ws/portalfiles/portal/104470560/Analysis_of_Markov_influence_graphs.pdf">Berkhout and Heidergott (2019)</a>
- which allows to decompose a Markov chain into clusters of states, 
-where states within a cluster are relatively more connected to each other compared
+<h1 id="_1"></h1>
+<p><img alt="logo" src="images/logo.JPG" /></p>
+<p>Welcome to the documentation of the Python package <code>pykda</code> which implements the
+Kemeny Decomposition Algorithm (KDA) from <a href="https://research.vu.nl/ws/portalfiles/portal/104470560/Analysis_of_Markov_influence_graphs.pdf">Berkhout and Heidergott (2019)</a>.
+ It allows to decompose a Markov chain into clusters of states, 
+where states within a cluster are relatively more connected to each other than compared
 to states outside the cluster. </p>
 <p>KDA uses the Kemeny constant as a connectivity measure.
 The Kemeny constant is equal to the expected number of steps it takes to go from
 an arbitrary state to a random state drawn according to the stationary distribution
 of the Markov chain.</p>
+<p>The package also contains Markov chain tooling for the calculations; for more
+details about these calculations and the theory, please refer to the book from
+<a href="https://link-springer-com.vu-nl.idm.oclc.org/book/9780387901923">Kemeny and Snell (1976)</a>.</p>
 <h3 id="about">About</h3>
 <p>This package is an attempt to make the code from <a href="https://research.vu.nl/ws/portalfiles/portal/104470560/Analysis_of_Markov_influence_graphs.pdf">Berkhout and Heidergott (2019)</a>
 more accessible to the public. Also, it serves as a practice project for the
@@ -512,6 +534,11 @@ author (Joost Berkhout) to learn about software package development in Python.</
 <li><code>tarjan</code>: to determine strongly connected components in graphs.</li>
 <li><code>pyvis</code>: to visualize the Markov chain and the KDA clusters.</li>
 </ul>
+<h3 id="contributing">Contributing</h3>
+<p>Feel free to contribute! For major changes, please open an issue first
+to discuss what you would like to change.
+Please make to add tests of the new code where appropriate 
+and use pre-commit.</p>
 <h3 id="acknowledgement">Acknowledgement</h3>
 <p>The author would like to thank <a href="https://github.com/leonlan">Leon Lan</a> for his help
 and inspiration. The setup in this package tries to follow that of the package <a href="https://github.com/N-Wouda/ALNS">ALNS</a>.</p>

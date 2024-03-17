@@ -496,35 +496,39 @@
 
 <h1 id="installation-instructions">Installation instructions</h1>
 <h2 id="installation">Installation</h2>
-<p>The package can be installed through pip by running the following command in the terminal:</p>
-<pre><code>pip install pykda
-</code></pre>
+<p>The package can be installed through pip by running the following command in the terminal:
+<div class="highlight"><pre><span></span><code>pip install pykda
+</code></pre></div></p>
 <h2 id="running-the-examples-locally">Running the examples locally</h2>
-<p>To run the example notebooks locally, first clone the repository:</p>
-<pre><code>git clone https://github.com/JoostBerkhout/PyKDA
-</code></pre>
-<p>Then, make sure your Python version has poetry:</p>
-<pre><code>pip install --upgrade poetry
-</code></pre>
-<p>Now, go into the PyKDA repository and set up a virtual environment. 
+<p>To run the example notebooks locally, first clone the repository:
+<div class="highlight"><pre><span></span><code>git clone https://github.com/JoostBerkhout/PyKDA
+</code></pre></div>
+Then, make sure your Python version has poetry:
+<div class="highlight"><pre><span></span><code>pip install --upgrade poetry
+</code></pre></div>
+Now, go into the PyKDA repository and set up a virtual environment. 
 We want a virtual environment that also contains all dependencies needed to run 
 the example notebooks, so we also need to install the optional examples 
-dependency group. This goes like so:</p>
-<pre><code>cd PyKDA
+dependency group. This goes like so:
+<div class="highlight"><pre><span></span><code>cd PyKDA
 poetry install --with examples
-</code></pre>
-<p>This might take a few minutes to resolve, but only needs to be done once. 
-After setting everything up, simply open the jupyter notebooks:</p>
-<pre><code>poetry run jupyter notebook
-</code></pre>
-<p>This will open up a page in your browser, where you can navigate to the example 
+</code></pre></div>
+This might take a few minutes to resolve, but only needs to be done once. 
+After setting everything up, simply open the jupyter notebooks:
+<div class="highlight"><pre><span></span><code>poetry run jupyter notebook
+</code></pre></div>
+This will open up a page in your browser, where you can navigate to the example 
 notebooks in the examples/ folder!</p>
-<p>!!! warning
-    The plotting of the Markov chain using <code>pyvis</code> does not always work when 
-    running the notebooks locally. When this happens, try to put <code>notebook=False</code>
-    in the <code>plot</code> functions as argument.</p>
-<p>!!! note
-    The above instructions also allow to change the code locally.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The plotting of the Markov chain using <code>pyvis</code> does not always work when 
+running the notebooks locally. When this happens, try to put <code>notebook=False</code>
+in the <code>plot</code> functions as argument.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The above instructions also allow to change the code locally.</p>
+</div>
 
 
 
