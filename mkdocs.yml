@@ -29,3 +29,8 @@ plugins:
           options:
             docstring_style: numpy
             docstring_section_style: list
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
