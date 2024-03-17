@@ -3,7 +3,7 @@
 Welcome to the Python package `pykda`. It implements the Kemeny Decomposition 
 Algorithm (KDA) from [Berkhout and Heidergott (2019)](https://research.vu.nl/ws/portalfiles/portal/104470560/Analysis_of_Markov_influence_graphs.pdf)
  which allows to decompose a Markov chain into clusters of states, 
-where states within a cluster are relatively more connected to each other compared
+where states within a cluster are relatively more connected to each other than compared
 to states outside the cluster. 
 
 KDA uses the Kemeny constant as a connectivity measure.
@@ -11,7 +11,7 @@ The Kemeny constant is equal to the expected number of steps it takes to go from
 an arbitrary state to a random state drawn according to the stationary distribution
 of the Markov chain.
 
-The package also contains Markov chain tooling for the calculations, for more
+The package also contains Markov chain tooling for the calculations; for more
 details about these calculations and the theory, please refer to the book from
 [Kemeny and Snell (1976)](https://link-springer-com.vu-nl.idm.oclc.org/book/9780387901923).
 
