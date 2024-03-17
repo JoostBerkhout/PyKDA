@@ -42,8 +42,7 @@ This gives `[0.226 0.156 0.23  0.232 0.156]`. And we can plot the Markov chain:
 MC.plot(file_name="An artificial Markov chain")
 ```
 
-![An artificial Markov chain](https://github.com/JoostBerkhout/PyKDA/blob/main/docs/images/plot_readme_example.JPG | width=100)
-<img src="https://github.com/JoostBerkhout/PyKDA/blob/main/docs/images/plot_readme_example.JPG" width="100">
+<img src="https://github.com/JoostBerkhout/PyKDA/blob/main/docs/images/plot_readme_example.JPG" width="400">
 
 Let us now decompose the Markov chain into clusters using KDA. We start by
 initializing an `KDA` object using the Markov chain and the KDA settings (such
