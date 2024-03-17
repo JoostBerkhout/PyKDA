@@ -11,6 +11,10 @@ The Kemeny constant is equal to the expected number of steps it takes to go from
 an arbitrary state to a random state drawn according to the stationary distribution
 of the Markov chain.
 
+The package also contains Markov chain tooling for the calculations, for more
+details about these calculations and the theory, please refer to the book from
+[Kemeny and Snell (1976)](https://link-springer-com.vu-nl.idm.oclc.org/book/9780387901923).
+
 ### About
 
 This package is an attempt to make the code from [Berkhout and Heidergott (2019)](https://research.vu.nl/ws/portalfiles/portal/104470560/Analysis_of_Markov_influence_graphs.pdf)
@@ -22,6 +26,13 @@ author (Joost Berkhout) to learn about software package development in Python.
 - `numpy`: for numerical linear algebra calculations.
 - `tarjan`: to determine strongly connected components in graphs.
 - `pyvis`: to visualize the Markov chain and the KDA clusters.
+
+### Contributing
+
+Feel free to contribute! For major changes, please open an issue first
+to discuss what you would like to change.
+Please make to add tests of the new code where appropriate 
+and use pre-commit.
 
 ### Acknowledgement
 The author would like to thank [Leon Lan](https://github.com/leonlan) for his help

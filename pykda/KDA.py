@@ -55,6 +55,7 @@ class KDA:
         CO_A : str
             Condition of how often the Kemeny constant derivatives are being
             recalculated (outer while loop in KDA). The options are:
+
                 - 'CO_A_1(i)' = Number of times performed < i
                 - 'CO_A_2(E)' = Number of ergodic classes in current MC is < E
                 - 'CO_A_3(C)' = Number of strongly connected components in
@@ -62,6 +63,7 @@ class KDA:
         CO_B : str
             Condition of how many edges are being cut per iteration (inner while
             loop in KDA). The options are:
+
                 - 'CO_B_1(e)' = Number of edges cut is < e
                 - 'CO_B_2(E)' = Number of ergodic classes in MC is < E
                 - 'CO_B_3(q)' = Not all edges with MC.KDer < q are cut
