@@ -99,7 +99,7 @@ kda2.plot(file_name="An artificial Markov chain after KDA_A2_2_B1_1")
 ```
 which gives (edges (4, 0) and (1, 4) are cut in two iterations):
 
-<img src="https://github.com/JoostBerkhout/PyKDA/blob/main/docs/images/plot_readme_example_after_KDA_A1_1_B3_0.JPG" width="250">
+<img src="https://github.com/JoostBerkhout/PyKDA/blob/main/docs/images/plot_readme_example_after_KDA_A2_2_B1_1.JPG" width="250">
 
 ### How to learn more about `pykda`?
 To learn more about `pykda` have a look at the [documentation](https://joostberkhout.github.io/PyKDA/). There, you can
