@@ -1,13 +1,13 @@
+<img src="https://github.com/JoostBerkhout/PyKDA/blob/main/docs/images/logo.JPG" width="280">
+
 [![PyPI version](https://badge.fury.io/py/pykda.svg)](https://badge.fury.io/py/pykda)
 [![ALNS](https://github.com/JoostBerkhout/PyKDA/actions/workflows/PyKDA.yml/badge.svg)](https://github.com/JoostBerkhout/PyKDA/actions/workflows/PyKDA.yml)
 [![codecov](https://codecov.io/gh/JoostBerkhout/PyKDA/graph/badge.svg?token=M4WF9A5ZML)](https://codecov.io/gh/JoostBerkhout/PyKDA)
 
-# PyKDA
-
 `pykda` is a Python package for the Kemeny Decomposition Algorithm (KDA) which 
 allows to decompose a Markov chain into clusters of states, where states within
-a cluster are relatively more connected to each other compared to states outside
-the cluster. This is useful for the analysis of influence graphs, such as social 
+a cluster are relatively more connected to each other than states outside
+the cluster. This is useful for analyzing influence graphs, such as social 
 networks and internet networks. KDA was developed in the paper from [Berkhout and Heidergott (2019)](https://research.vu.nl/ws/portalfiles/portal/104470560/Analysis_of_Markov_influence_graphs.pdf)
 and uses the Kemeny constant as a connectivity measure. 
 
@@ -37,25 +37,25 @@ We can study some properties of the Markov chain, such as the stationary distrib
 ```python
 print(MC.stationary_distribution.flatten())
 ```
-This gives `[0.226 0.156 0.23  0.232 0.156]`. And we can plot the Markov chain:
+This gives `[0.226 0.156 0.23  0.232 0.156]`. We can also plot the Markov chain:
 ```python
 MC.plot(file_name="An artificial Markov chain")
 ```
 
 <img src="https://github.com/JoostBerkhout/PyKDA/blob/main/docs/images/plot_readme_example.JPG" width="280">
 
-Let us now decompose the Markov chain into clusters using KDA. We start by
-initializing an `KDA` object using the Markov chain and the KDA settings (such
-as the number of clusters). For more details about setting choices see the [KDA documentation](https://joostberkhout.github.io/PyKDA/references/KDA/)
+Now, let us decompose the Markov chain into clusters using KDA. We start by
+initializing a `KDA` object using the Markov chain and the KDA settings (such
+as the number of clusters). For more details about setting choices, see the [KDA documentation](https://joostberkhout.github.io/PyKDA/references/KDA/)
 or [Berkhout and Heidergott (2019)](https://research.vu.nl/ws/portalfiles/portal/104470560/Analysis_of_Markov_influence_graphs.pdf).
-Here we apply the default settings which is to cut all edges with a negative
+Here, we apply the default settings, which is to cut all edges with a negative
 Kemeny constant derivative and normalizing the transition matrix afterward.
 ```python
 kda = KDA(
     original_MC=MC, CO_A="CO_A_1(1)", CO_B="CO_B_3(0)", symmetric_cut=False
     )
 ```
-Now led us run the KDA algorithm and visualize the results.
+Now, let us run the KDA algorithm and visualize the results.
 ```python
 kda.run()
 kda.plot(file_name="An artificial Markov chain after KDA_A1_1_B3_0")
@@ -74,7 +74,7 @@ MC with 5 states.
 Ergodic classes: [[2, 0], [3]].
 Transient classes: [[1], [4]].
 ```
-So KDA let to a Markov multi-chain with two ergodic classes and two transient classes.
+So KDA led to a Markov multi-chain with two ergodic classes and two transient classes.
 We can also study the edges that KDA cut via the `log` attribute of the `KDA` object.
 ```python
 print(kda.log['edges cut'])
@@ -86,9 +86,9 @@ This gives the following output:
 We can also study the Markov chains that KDA found in each (outer) iteration via
  `kda.log['Markov chains']`)`.
 
-As another KDA application example, let us apply KDA untill we find two ergodic 
-classes explicitly. And we will ensure that the Kemeny constant derivatives are
-recalculated after each cut (and normalizing the cutted transition matrix to 
+As another KDA application example, let us apply KDA until we find two ergodic 
+classes explicitly. We will also ensure that the Kemeny constant derivatives are
+recalculated after each cut (and normalize the cut transition matrix to 
 ensure it is a stochastic matrix again). To that end, we use:
 ```python
 kda2 = KDA(
