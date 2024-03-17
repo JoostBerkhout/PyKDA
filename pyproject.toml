@@ -1,9 +1,14 @@
 [tool.poetry]
 name = "pykda"
 version = "0.9.2"
-description = ""
+description = "Python package for the Kemeny Decomposition Algorithm (KDA) together with some Markov chain tooling."
 authors = ["Joost Berkhout <joost.berkhout@vu.nl>"]
+maintainers = ["Joost Berkhout <joost.berkhout@vu.nl>"]
 readme = "README.md"
+license = "MIT"
+repository = "https://github.com/JoostBerkhout/PyKDA"
+documentation = "https://joostberkhout.github.io/PyKDA/"
+keywords = ["Markov chain", "Kemeny Decomposition Algorithm", "KDA", "Kemeny constant"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
