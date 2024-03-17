@@ -1,4 +1,4 @@
-<img src="https://github.com/JoostBerkhout/PyKDA/blob/main/docs/images/logo.JPG" width="280">
+<img src="https://github.com/JoostBerkhout/PyKDA/blob/main/docs/images/logo.JPG" width="400">
 
 [![PyPI version](https://badge.fury.io/py/pykda.svg)](https://badge.fury.io/py/pykda)
 [![ALNS](https://github.com/JoostBerkhout/PyKDA/actions/workflows/PyKDA.yml/badge.svg)](https://github.com/JoostBerkhout/PyKDA/actions/workflows/PyKDA.yml)
