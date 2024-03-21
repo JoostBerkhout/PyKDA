@@ -1143,7 +1143,7 @@ are avoided (a lot of concepts depend on each other).</p>
   <ul>
       <li class="field-body">
         <b><code>P</code></b>
-            (<code><span title="numpy.ndarray">ndarray</span> or list[list] or str</code>)
+            (<code><span title="numpy.ndarray">ndarray</span> | list[list] | str</code>)
         –
         <div class="doc-md-description">
           <p>Probability transition matrix. If a string is given, it is assumed it is
@@ -1155,7 +1155,8 @@ data.</p>
 
             <details class="quote">
               <summary>Source code in <code>pykda\Markov_chain.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 21</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 20</span>
+<span class="normal"> 21</span>
 <span class="normal"> 22</span>
 <span class="normal"> 23</span>
 <span class="normal"> 24</span>
@@ -1632,8 +1633,7 @@ data.</p>
 <span class="normal">495</span>
 <span class="normal">496</span>
 <span class="normal">497</span>
-<span class="normal">498</span>
-<span class="normal">499</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">MarkovChain</span><span class="p">:</span>
+<span class="normal">498</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">MarkovChain</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Captures a discrete time Markov chain with given transition matrix P.</span>
 
@@ -1642,14 +1642,14 @@ data.</p>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    P : np.ndarray or list[list] or str</span>
+<span class="sd">    P : np.ndarray | list[list] | str</span>
 <span class="sd">        Probability transition matrix. If a string is given, it is assumed it is</span>
 <span class="sd">        the name of one of the predefined transition matrices from the folder</span>
 <span class="sd">        data.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">P</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">]</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">P</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">]</span> <span class="o">|</span> <span class="nb">str</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">P</span> <span class="o">=</span> <span class="n">P</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
@@ -1669,7 +1669,7 @@ data.</p>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_P</span>
 
     <span class="nd">@P</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">P</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">P</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">]</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">P</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">P</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">]</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Setter for probability transition matrix.&quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
@@ -1959,7 +1959,7 @@ data.</p>
 
     <span class="k">def</span> <span class="nf">sorted_edges</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">existing_edges_only</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the edges/transitions in order of how connecting they are</span>
 <span class="sd">        from least to most connecting.</span>
 
@@ -1972,7 +1972,7 @@ data.</p>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Tuple[np.ndarray, np.ndarray]</span>
+<span class="sd">        tuple[np.ndarray, np.ndarray]</span>
 <span class="sd">            The ordered row and column indices, respectively, of the</span>
 <span class="sd">            edges/connections in order of smallest Kemeny constant derivatives.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1989,7 +1989,7 @@ data.</p>
 
     <span class="k">def</span> <span class="nf">most_connecting_edges</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">num_edges</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">only_existing_edges</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the num_edges most connecting edges.</span>
 
 <span class="sd">        Parameters</span>
@@ -2001,7 +2001,7 @@ data.</p>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Tuple[np.ndarray, np.ndarray]</span>
+<span class="sd">        tuple[np.ndarray, np.ndarray]</span>
 <span class="sd">            The num_edges row and column indices, respectively, of the</span>
 <span class="sd">            edges/connections with the smallest Kemeny constant derivatives.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -2019,7 +2019,7 @@ data.</p>
 
     <span class="k">def</span> <span class="nf">edges_below_threshold</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">only_existing_edges</span><span class="o">=</span><span class="kc">True</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the edges with Kemeny constant derivatives &lt; threshold.</span>
 
 <span class="sd">        Parameters</span>
@@ -2031,7 +2031,7 @@ data.</p>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Tuple[np.ndarray, np.ndarray]</span>
+<span class="sd">        tuple[np.ndarray, np.ndarray]</span>
 <span class="sd">            The num_edges row and column indices, respectively, of the</span>
 <span class="sd">            edges/connections with the smallest Kemeny constant derivatives.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -2835,7 +2835,7 @@ state i.</p>
   <p>Returns:</p>
   <ul>
       <li class="field-body">
-            <code><span title="typing.Tuple">Tuple</span>[<span title="numpy.ndarray">ndarray</span>, <span title="numpy.ndarray">ndarray</span>]</code>
+            <code>tuple[<span title="numpy.ndarray">ndarray</span>, <span title="numpy.ndarray">ndarray</span>]</code>
         –
         <div class="doc-md-description">
           <p>The num_edges row and column indices, respectively, of the
@@ -2846,7 +2846,8 @@ edges/connections with the smallest Kemeny constant derivatives.</p>
 
           <details class="quote">
             <summary>Source code in <code>pykda\Markov_chain.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">405</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">404</span>
+<span class="normal">405</span>
 <span class="normal">406</span>
 <span class="normal">407</span>
 <span class="normal">408</span>
@@ -2873,10 +2874,9 @@ edges/connections with the smallest Kemeny constant derivatives.</p>
 <span class="normal">429</span>
 <span class="normal">430</span>
 <span class="normal">431</span>
-<span class="normal">432</span>
-<span class="normal">433</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">edges_below_threshold</span><span class="p">(</span>
+<span class="normal">432</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">edges_below_threshold</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">only_existing_edges</span><span class="o">=</span><span class="kc">True</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the edges with Kemeny constant derivatives &lt; threshold.</span>
 
 <span class="sd">    Parameters</span>
@@ -2888,7 +2888,7 @@ edges/connections with the smallest Kemeny constant derivatives.</p>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    Tuple[np.ndarray, np.ndarray]</span>
+<span class="sd">    tuple[np.ndarray, np.ndarray]</span>
 <span class="sd">        The num_edges row and column indices, respectively, of the</span>
 <span class="sd">        edges/connections with the smallest Kemeny constant derivatives.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -2953,7 +2953,7 @@ edges/connections with the smallest Kemeny constant derivatives.</p>
   <p>Returns:</p>
   <ul>
       <li class="field-body">
-            <code><span title="typing.Tuple">Tuple</span>[<span title="numpy.ndarray">ndarray</span>, <span title="numpy.ndarray">ndarray</span>]</code>
+            <code>tuple[<span title="numpy.ndarray">ndarray</span>, <span title="numpy.ndarray">ndarray</span>]</code>
         –
         <div class="doc-md-description">
           <p>The num_edges row and column indices, respectively, of the
@@ -2964,7 +2964,8 @@ edges/connections with the smallest Kemeny constant derivatives.</p>
 
           <details class="quote">
             <summary>Source code in <code>pykda\Markov_chain.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">375</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">374</span>
+<span class="normal">375</span>
 <span class="normal">376</span>
 <span class="normal">377</span>
 <span class="normal">378</span>
@@ -2991,10 +2992,9 @@ edges/connections with the smallest Kemeny constant derivatives.</p>
 <span class="normal">399</span>
 <span class="normal">400</span>
 <span class="normal">401</span>
-<span class="normal">402</span>
-<span class="normal">403</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">most_connecting_edges</span><span class="p">(</span>
+<span class="normal">402</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">most_connecting_edges</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">num_edges</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">only_existing_edges</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the num_edges most connecting edges.</span>
 
 <span class="sd">    Parameters</span>
@@ -3006,7 +3006,7 @@ edges/connections with the smallest Kemeny constant derivatives.</p>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    Tuple[np.ndarray, np.ndarray]</span>
+<span class="sd">    tuple[np.ndarray, np.ndarray]</span>
 <span class="sd">        The num_edges row and column indices, respectively, of the</span>
 <span class="sd">        edges/connections with the smallest Kemeny constant derivatives.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -3098,7 +3098,8 @@ Google Colab. Default is False.</p>
 
           <details class="quote">
             <summary>Source code in <code>pykda\Markov_chain.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">435</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">434</span>
+<span class="normal">435</span>
 <span class="normal">436</span>
 <span class="normal">437</span>
 <span class="normal">438</span>
@@ -3161,8 +3162,7 @@ Google Colab. Default is False.</p>
 <span class="normal">495</span>
 <span class="normal">496</span>
 <span class="normal">497</span>
-<span class="normal">498</span>
-<span class="normal">499</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">plot</span><span class="p">(</span>
+<span class="normal">498</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">plot</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">labels</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -3271,7 +3271,7 @@ from least to most connecting.</p>
   <p>Returns:</p>
   <ul>
       <li class="field-body">
-            <code><span title="typing.Tuple">Tuple</span>[<span title="numpy.ndarray">ndarray</span>, <span title="numpy.ndarray">ndarray</span>]</code>
+            <code>tuple[<span title="numpy.ndarray">ndarray</span>, <span title="numpy.ndarray">ndarray</span>]</code>
         –
         <div class="doc-md-description">
           <p>The ordered row and column indices, respectively, of the
@@ -3282,7 +3282,8 @@ edges/connections in order of smallest Kemeny constant derivatives.</p>
 
           <details class="quote">
             <summary>Source code in <code>pykda\Markov_chain.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">345</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">344</span>
+<span class="normal">345</span>
 <span class="normal">346</span>
 <span class="normal">347</span>
 <span class="normal">348</span>
@@ -3309,10 +3310,9 @@ edges/connections in order of smallest Kemeny constant derivatives.</p>
 <span class="normal">369</span>
 <span class="normal">370</span>
 <span class="normal">371</span>
-<span class="normal">372</span>
-<span class="normal">373</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">sorted_edges</span><span class="p">(</span>
+<span class="normal">372</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">sorted_edges</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">existing_edges_only</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the edges/transitions in order of how connecting they are</span>
 <span class="sd">    from least to most connecting.</span>
 
@@ -3325,7 +3325,7 @@ edges/connections in order of smallest Kemeny constant derivatives.</p>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    Tuple[np.ndarray, np.ndarray]</span>
+<span class="sd">    tuple[np.ndarray, np.ndarray]</span>
 <span class="sd">        The ordered row and column indices, respectively, of the</span>
 <span class="sd">        edges/connections in order of smallest Kemeny constant derivatives.</span>
 <span class="sd">    &quot;&quot;&quot;</span>

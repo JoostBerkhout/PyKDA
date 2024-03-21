@@ -588,7 +588,8 @@ pre-defined options.</p>
 
           <details class="quote">
             <summary>Source code in <code>pykda\loaders.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">66</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">65</span>
+<span class="normal">66</span>
 <span class="normal">67</span>
 <span class="normal">68</span>
 <span class="normal">69</span>
@@ -614,9 +615,8 @@ pre-defined options.</p>
 <span class="normal">89</span>
 <span class="normal">90</span>
 <span class="normal">91</span>
-<span class="normal">92</span>
-<span class="normal">93</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">load_predefined_transition_matrix</span><span class="p">(</span>
-    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">normalizer</span><span class="p">:</span> <span class="n">normalizer_type</span> <span class="o">=</span> <span class="n">standard_row_normalization</span>
+<span class="normal">92</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">load_predefined_transition_matrix</span><span class="p">(</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">normalizer</span><span class="p">:</span> <span class="n">_normalizer_type</span> <span class="o">=</span> <span class="n">standard_row_normalization</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Load a predefined csv file from the data folder as transition matrix. The</span>
@@ -671,7 +671,7 @@ stochastic matrix, the function will try to normalize it.</p>
   <ul>
       <li class="field-body">
         <b><code>A</code></b>
-            (<code>Union[<span title="numpy.ndarray">ndarray</span>, <span title="typing.List">List</span>[<span title="typing.List">List</span>]]</code>)
+            (<code>Union[<span title="numpy.ndarray">ndarray</span>, list[list]]</code>)
         –
         <div class="doc-md-description">
           <p>Array to be loaded as a Markov chain transition matrix.</p>
@@ -706,7 +706,8 @@ pre-defined options.</p>
 
           <details class="quote">
             <summary>Source code in <code>pykda\loaders.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">19</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">18</span>
+<span class="normal">19</span>
 <span class="normal">20</span>
 <span class="normal">21</span>
 <span class="normal">22</span>
@@ -749,10 +750,9 @@ pre-defined options.</p>
 <span class="normal">59</span>
 <span class="normal">60</span>
 <span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">load_transition_matrix</span><span class="p">(</span>
-    <span class="n">A</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">],</span>
-    <span class="n">normalizer</span><span class="p">:</span> <span class="n">normalizer_type</span> <span class="o">=</span> <span class="n">standard_row_normalization</span><span class="p">,</span>
+<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">load_transition_matrix</span><span class="p">(</span>
+    <span class="n">A</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">],</span>
+    <span class="n">normalizer</span><span class="p">:</span> <span class="n">_normalizer_type</span> <span class="o">=</span> <span class="n">standard_row_normalization</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Load a transition matrix from a given array. If the array is not a</span>
@@ -760,7 +760,7 @@ pre-defined options.</p>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    A : Union[np.ndarray, List[List]]</span>
+<span class="sd">    A : Union[np.ndarray, list[list]]</span>
 <span class="sd">        Array to be loaded as a Markov chain transition matrix.</span>
 <span class="sd">    normalizer : Callable[[np.ndarray], np.ndarray], optional</span>
 <span class="sd">        Normalization function used to create a stochastic matrix from a matrix</span>

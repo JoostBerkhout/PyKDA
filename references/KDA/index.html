@@ -1225,7 +1225,7 @@ a new Markov chain after normalization</p>
         <span class="n">CO_B</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;CO_B_3(0)&quot;</span><span class="p">,</span>
         <span class="n">symmetric_cut</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">normalizer</span><span class="p">:</span> <span class="n">normalizer_type</span> <span class="o">=</span> <span class="n">standard_row_normalization</span><span class="p">,</span>
+        <span class="n">normalizer</span><span class="p">:</span> <span class="n">_normalizer_type</span> <span class="o">=</span> <span class="n">standard_row_normalization</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
@@ -1379,9 +1379,9 @@ a new Markov chain after normalization</p>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        row_indexes : np.ndarray or list</span>
+<span class="sd">        row_indexes : np.ndarray | list</span>
 <span class="sd">            Row indexes of the edges to be cut.</span>
-<span class="sd">        col_indexes : np.ndarray or list</span>
+<span class="sd">        col_indexes : np.ndarray | list</span>
 <span class="sd">            Columns indexes of the edges to be cut.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1404,9 +1404,9 @@ a new Markov chain after normalization</p>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        row_indexes : np.ndarray or list</span>
+<span class="sd">        row_indexes : np.ndarray | list</span>
 <span class="sd">            Row indexes of the edges that are cut.</span>
-<span class="sd">        col_indexes : np.ndarray or list</span>
+<span class="sd">        col_indexes : np.ndarray | list</span>
 <span class="sd">            Columns indexes of the edges that are cut.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -1608,7 +1608,7 @@ loop in KDA). The options are:</p>
       </li>
       <li class="field-body">
         <b><code>normalizer</code></b>
-            (<code><span title="pykda.normalizers.normalizer_type">normalizer_type</span></code>, default:
+            (<code>normalizer_type</code>, default:
                 <code><a class="autorefs autorefs-internal" title="pykda.normalizers.standard_row_normalization" href="../normalizers/#pykda.normalizers.standard_row_normalization">standard_row_normalization</a></code>
 )
         –
@@ -1677,7 +1677,7 @@ loop in KDA). The options are:</p>
     <span class="n">CO_B</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;CO_B_3(0)&quot;</span><span class="p">,</span>
     <span class="n">symmetric_cut</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">normalizer</span><span class="p">:</span> <span class="n">normalizer_type</span> <span class="o">=</span> <span class="n">standard_row_normalization</span><span class="p">,</span>
+    <span class="n">normalizer</span><span class="p">:</span> <span class="n">_normalizer_type</span> <span class="o">=</span> <span class="n">standard_row_normalization</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parameters</span>
@@ -2249,7 +2249,7 @@ When self.symmetric_cut = True, also the reversed edges are cut.</p>
   <ul>
       <li class="field-body">
         <b><code>row_indexes</code></b>
-            (<code><span title="numpy.ndarray">ndarray</span> or list</code>)
+            (<code><span title="numpy.ndarray">ndarray</span> | list</code>)
         –
         <div class="doc-md-description">
           <p>Row indexes of the edges that are cut.</p>
@@ -2257,7 +2257,7 @@ When self.symmetric_cut = True, also the reversed edges are cut.</p>
       </li>
       <li class="field-body">
         <b><code>col_indexes</code></b>
-            (<code><span title="numpy.ndarray">ndarray</span> or list</code>)
+            (<code><span title="numpy.ndarray">ndarray</span> | list</code>)
         –
         <div class="doc-md-description">
           <p>Columns indexes of the edges that are cut.</p>
@@ -2289,9 +2289,9 @@ When self.symmetric_cut = True, also the reversed edges are cut.</p>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    row_indexes : np.ndarray or list</span>
+<span class="sd">    row_indexes : np.ndarray | list</span>
 <span class="sd">        Row indexes of the edges that are cut.</span>
-<span class="sd">    col_indexes : np.ndarray or list</span>
+<span class="sd">    col_indexes : np.ndarray | list</span>
 <span class="sd">        Columns indexes of the edges that are cut.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
