@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the following metadata."
+authors:
+  - family-names: "Berkhout"
+    given-names: "Joost"
+    orcid: "https://orcid.org/0000-0001-5883-9683"
+  - family-names: "Heidergott"
+    given-names: "Bernd"
+    orcid: "https://orcid.org/0000-0002-3389-2311"
+title: "PyKDA"
+url: "https://github.com/JoostBerkhout/PyKDA"
+preferred-citation:
+  type: article
+  authors:
+  - family-names: "Berkhout"
+    given-names: "Joost"
+    orcid: "https://orcid.org/0000-0001-5883-9683"
+  - family-names: "Heidergott"
+    given-names: "Bernd"
+    orcid: "https://orcid.org/0000-0002-3389-2311"
+  title: "Analysis of Markov influence graphs"
+  journal: "Operations Research"
+  volume: 67
+  issue: 3
+  year: 2019
+  doi: "https://doi.org/10.1287/opre.2018.1813"

@@ -4,7 +4,6 @@ given transition matrix P.
 """
 import copy
 from functools import cached_property
-from typing import List, Tuple
 
 import numpy as np
 from pyvis.network import Network
@@ -27,14 +26,14 @@ class MarkovChain:
 
     Parameters
     ----------
-    P : np.ndarray or list[list] or str
+    P : np.ndarray | list[list] | str
         Probability transition matrix. If a string is given, it is assumed it is
         the name of one of the predefined transition matrices from the folder
         data.
 
     """
 
-    def __init__(self, P: np.ndarray | List[List] | str) -> None:
+    def __init__(self, P: np.ndarray | list[list] | str):
         self.P = P
 
     def __str__(self):  # pragma: no cover
@@ -54,7 +53,7 @@ class MarkovChain:
         return self._P
 
     @P.setter
-    def P(self, P: np.ndarray | List[List] | str) -> None:
+    def P(self, P: np.ndarray | list[list] | str) -> None:
         """Setter for probability transition matrix."""
 
         if isinstance(P, str):
@@ -344,7 +343,7 @@ class MarkovChain:
 
     def sorted_edges(
         self, existing_edges_only: bool = True
-    ) -> Tuple[np.ndarray, np.ndarray]:
+    ) -> tuple[np.ndarray, np.ndarray]:
         """Returns the edges/transitions in order of how connecting they are
         from least to most connecting.
 
@@ -357,7 +356,7 @@ class MarkovChain:
 
         Returns
         -------
-        Tuple[np.ndarray, np.ndarray]
+        tuple[np.ndarray, np.ndarray]
             The ordered row and column indices, respectively, of the
             edges/connections in order of smallest Kemeny constant derivatives.
         """
@@ -374,7 +373,7 @@ class MarkovChain:
 
     def most_connecting_edges(
         self, num_edges: int, only_existing_edges: bool = True
-    ) -> Tuple[np.ndarray, np.ndarray]:
+    ) -> tuple[np.ndarray, np.ndarray]:
         """Returns the num_edges most connecting edges.
 
         Parameters
@@ -386,7 +385,7 @@ class MarkovChain:
 
         Returns
         -------
-        Tuple[np.ndarray, np.ndarray]
+        tuple[np.ndarray, np.ndarray]
             The num_edges row and column indices, respectively, of the
             edges/connections with the smallest Kemeny constant derivatives.
         """
@@ -404,7 +403,7 @@ class MarkovChain:
 
     def edges_below_threshold(
         self, threshold: float, only_existing_edges=True
-    ) -> Tuple[np.ndarray, np.ndarray]:
+    ) -> tuple[np.ndarray, np.ndarray]:
         """Returns the edges with Kemeny constant derivatives < threshold.
 
         Parameters
@@ -416,7 +415,7 @@ class MarkovChain:
 
         Returns
         -------
-        Tuple[np.ndarray, np.ndarray]
+        tuple[np.ndarray, np.ndarray]
             The num_edges row and column indices, respectively, of the
             edges/connections with the smallest Kemeny constant derivatives.
         """

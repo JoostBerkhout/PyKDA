@@ -1,8 +1,6 @@
 """
 Contains general utility functions for the package.
 """
-from typing import Tuple
-
 import numpy as np
 from numpy import bool_
 
@@ -81,7 +79,7 @@ def row_sums_are_1(A: np.ndarray) -> bool:
     return np.all(np.abs(A.sum(axis=1) - 1) < constants.VALUE_ZERO)
 
 
-def eigenvec_centrality(A: np.ndarray) -> Tuple[np.ndarray, float]:
+def eigenvec_centrality(A: np.ndarray) -> tuple[np.ndarray, float]:
     """
     Compute the eigenvector centrality of a given non-negative adjacency matrix.
 

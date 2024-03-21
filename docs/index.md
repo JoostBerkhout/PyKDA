@@ -1,5 +1,5 @@
 #
-![logo](images/logo.JPG)
+![logo](images/logo.png)
 
 Welcome to the documentation of the Python package `pykda` which implements the
 Kemeny Decomposition Algorithm (KDA) from [Berkhout and Heidergott (2019)](https://research.vu.nl/ws/portalfiles/portal/104470560/Analysis_of_Markov_influence_graphs.pdf).

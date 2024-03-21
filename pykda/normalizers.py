@@ -13,6 +13,8 @@ from pykda.utilities import (
     is_nonnegative_matrix,
 )
 
+_normalizer_type = Callable[[np.ndarray], np.ndarray]
+
 
 def standard_row_normalization(A: np.ndarray) -> np.ndarray:
     """
@@ -90,6 +92,3 @@ def normalization_same_eigenvec_centr(A: np.ndarray) -> np.ndarray:
     A_with_dummy[1:, [0]] = max_row_sum - rows_sums
 
     return standard_row_normalization(A_with_dummy)
-
-
-normalizer_type = Callable[[np.ndarray], np.ndarray]

@@ -5,7 +5,7 @@ import numpy as np
 
 from pykda.Markov_chain import MarkovChain
 from pykda.loaders import load_transition_matrix
-from pykda.normalizers import normalizer_type, standard_row_normalization
+from pykda.normalizers import _normalizer_type, standard_row_normalization
 
 
 class KDA:
@@ -45,7 +45,7 @@ class KDA:
         CO_B: str = "CO_B_3(0)",
         symmetric_cut: bool = False,
         verbose: bool = False,
-        normalizer: normalizer_type = standard_row_normalization,
+        normalizer: _normalizer_type = standard_row_normalization,
     ):
         """
         Parameters
@@ -199,9 +199,9 @@ class KDA:
 
         Parameters
         ----------
-        row_indexes : np.ndarray or list
+        row_indexes : np.ndarray | list
             Row indexes of the edges to be cut.
-        col_indexes : np.ndarray or list
+        col_indexes : np.ndarray | list
             Columns indexes of the edges to be cut.
 
         """
@@ -224,9 +224,9 @@ class KDA:
 
         Parameters
         ----------
-        row_indexes : np.ndarray or list
+        row_indexes : np.ndarray | list
             Row indexes of the edges that are cut.
-        col_indexes : np.ndarray or list
+        col_indexes : np.ndarray | list
             Columns indexes of the edges that are cut.
         """
 

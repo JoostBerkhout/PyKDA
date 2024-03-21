@@ -1,10 +1,10 @@
-<img src="https://github.com/JoostBerkhout/PyKDA/blob/main/docs/images/logo.JPG" width="400">
+<img src="https://github.com/JoostBerkhout/PyKDA/blob/main/docs/images/logo.png" width="400">
 
 [![PyPI version](https://badge.fury.io/py/pykda.svg)](https://badge.fury.io/py/pykda)
 [![ALNS](https://github.com/JoostBerkhout/PyKDA/actions/workflows/PyKDA.yml/badge.svg)](https://github.com/JoostBerkhout/PyKDA/actions/workflows/PyKDA.yml)
 [![codecov](https://codecov.io/gh/JoostBerkhout/PyKDA/graph/badge.svg?token=M4WF9A5ZML)](https://codecov.io/gh/JoostBerkhout/PyKDA)
 
-`pykda` is a Python package for the Kemeny Decomposition Algorithm (KDA) which 
+`pykda` (you say "pie-k-d-a") is a Python package for the Kemeny Decomposition Algorithm (KDA) which 
 allows to decompose a Markov chain into clusters of states, where states within
 a cluster are relatively more connected to each other than states outside
 the cluster. This is useful for analyzing influence graphs, such as social 
