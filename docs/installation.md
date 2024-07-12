@@ -25,7 +25,8 @@ dependency group. This goes like so:
 cd PyKDA
 poetry install --with examples
 ```
-This might take a few minutes to resolve, but only needs to be done once. 
+This might take a few minutes to resolve, but only needs to be done once (if you
+also want to install the docs materials run `poetry install --with examples,docs`). 
 After setting everything up, simply open the jupyter notebooks:
 ```
 poetry run jupyter notebook
