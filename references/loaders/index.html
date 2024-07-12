@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.11">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.13">
     
     
       
@@ -367,6 +367,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#pykda.loaders.load_from_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      load_from_data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#pykda.loaders.load_predefined_transition_matrix" class="md-nav__link">
     <span class="md-ellipsis">
       load_predefined_transition_matrix
@@ -476,6 +485,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#pykda.loaders.load_from_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      load_from_data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#pykda.loaders.load_predefined_transition_matrix" class="md-nav__link">
     <span class="md-ellipsis">
       load_predefined_transition_matrix
@@ -536,6 +554,114 @@
 
 
 
+<h2 id="pykda.loaders.load_from_data" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">load_from_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">normalizer</span><span class="o">=</span><span class="n">standard_row_normalization</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Based on a Gaussian similarity matrix, create a transition matrix for
+the data as given in the array.</p>
+
+
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b><code>data</code></b>
+            (<code><span title="numpy.ndarray">ndarray</span></code>)
+        –
+        <div class="doc-md-description">
+          <p>Array in which the rows represent data points.</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code>normalizer</code></b>
+            (<code>Callable[[<span title="numpy.ndarray">ndarray</span>], <span title="numpy.ndarray">ndarray</span>]</code>, default:
+                <code><a class="autorefs autorefs-internal" title="pykda.normalizers.standard_row_normalization" href="../normalizers/#pykda.normalizers.standard_row_normalization">standard_row_normalization</a></code>
+)
+        –
+        <div class="doc-md-description">
+          <p>Normalization function used to create a stochastic matrix from the
+Gaussian similarity matrix, by default standard_row_normalization.
+See normalizers.py for pre-defined options.</p>
+        </div>
+      </li>
+  </ul>
+
+
+
+  <p>Returns:</p>
+  <ul>
+      <li class="field-body">
+            <code><span title="numpy.ndarray">ndarray</span></code>
+        –
+        <div class="doc-md-description">
+          <p>Transition matrix of a Markov chain for the given data.</p>
+      </div>
+      </li>
+  </ul>
+
+          <details class="quote">
+            <summary>Source code in <code>pykda\loaders.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">load_from_data</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">normalizer</span><span class="p">:</span> <span class="n">_normalizer_type</span> <span class="o">=</span> <span class="n">standard_row_normalization</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Based on a Gaussian similarity matrix, create a transition matrix for</span>
+<span class="sd">    the data as given in the array.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : np.ndarray</span>
+<span class="sd">        Array in which the rows represent data points.</span>
+<span class="sd">    normalizer : Callable[[np.ndarray], np.ndarray], optional</span>
+<span class="sd">        Normalization function used to create a stochastic matrix from the</span>
+<span class="sd">        Gaussian similarity matrix, by default standard_row_normalization.</span>
+<span class="sd">        See normalizers.py for pre-defined options.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    np.ndarray</span>
+<span class="sd">        Transition matrix of a Markov chain for the given data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">load_transition_matrix</span><span class="p">(</span><span class="n">Gaussian_similarity</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">normalizer</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
 <h2 id="pykda.loaders.load_predefined_transition_matrix" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">load_predefined_transition_matrix</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">normalizer</span><span class="o">=</span><span class="n">standard_row_normalization</span><span class="p">)</span></code>
 
@@ -588,8 +714,7 @@ pre-defined options.</p>
 
           <details class="quote">
             <summary>Source code in <code>pykda\loaders.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">65</span>
-<span class="normal">66</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">66</span>
 <span class="normal">67</span>
 <span class="normal">68</span>
 <span class="normal">69</span>
@@ -615,7 +740,8 @@ pre-defined options.</p>
 <span class="normal">89</span>
 <span class="normal">90</span>
 <span class="normal">91</span>
-<span class="normal">92</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">load_predefined_transition_matrix</span><span class="p">(</span>
+<span class="normal">92</span>
+<span class="normal">93</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">load_predefined_transition_matrix</span><span class="p">(</span>
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">normalizer</span><span class="p">:</span> <span class="n">_normalizer_type</span> <span class="o">=</span> <span class="n">standard_row_normalization</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -642,7 +768,7 @@ pre-defined options.</p>
     <span class="n">csv_file</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="n">csv_string</span><span class="p">)</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">csv_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">load_transition_matrix</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">load_transition_matrix</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">normalizer</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
           </details>
   </div>
@@ -706,8 +832,7 @@ pre-defined options.</p>
 
           <details class="quote">
             <summary>Source code in <code>pykda\loaders.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">18</span>
-<span class="normal">19</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">19</span>
 <span class="normal">20</span>
 <span class="normal">21</span>
 <span class="normal">22</span>
@@ -750,7 +875,8 @@ pre-defined options.</p>
 <span class="normal">59</span>
 <span class="normal">60</span>
 <span class="normal">61</span>
-<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">load_transition_matrix</span><span class="p">(</span>
+<span class="normal">62</span>
+<span class="normal">63</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">load_transition_matrix</span><span class="p">(</span>
     <span class="n">A</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">],</span>
     <span class="n">normalizer</span><span class="p">:</span> <span class="n">_normalizer_type</span> <span class="o">=</span> <span class="n">standard_row_normalization</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
@@ -880,7 +1006,7 @@ pre-defined options.</p>
     <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.8fd75fb4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c8d2eff1.min.js"></script>
       
     
   </body>
