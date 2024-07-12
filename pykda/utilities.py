@@ -177,3 +177,52 @@ def perturb_stochastic_matrix(
     P_perturbed[i, j] += theta
 
     return P_perturbed
+
+
+def Euclidean_distances(data: np.ndarray) -> np.ndarray:
+    """
+    Calculate the Euclidian distances between the rows of a data array.
+
+    Parameters
+    ----------
+    data : np.ndarray
+        Array in which the rows represent data points.
+
+    Returns
+    -------
+    np.ndarray
+        Matrix with Euclidian distances between the rows of the data input.
+
+    """
+
+    return np.sqrt(((data[:, np.newaxis] - data) ** 2).sum(axis=2))
+
+
+def Gaussian_similarity(data: np.ndarray, scale: float = 1) -> np.ndarray:
+    """
+    Calculate the Gaussian similarity function between the rows of an array.
+
+    Parameters
+    ----------
+    data : np.ndarray
+        Array in which the rows represent data points.
+    scale: float
+        The variance of the data points is scaled by this value. Larger values
+        of scale means smaller data neighborhoods, and vice versa. Default is
+        6.5, which is taken from Berkhout and Heidergott (2019).
+
+    Returns
+    -------
+    np.ndarray
+        Array of Gaussian similarity function values between the data rows.
+
+    """
+
+    distances = Euclidean_distances(data)
+    n = len(data)
+    var = np.sum(np.linalg.norm(data - np.mean(data, axis=0), axis=1) ** 2) / (
+        n - 1
+    )
+    scaled_variance = var / scale
+
+    return np.exp(-(distances**2) / scaled_variance)

@@ -1,7 +1,9 @@
 import numpy as np
+import pytest
 from pytest import approx
 
 from pykda.utilities import (
+    Euclidean_distances,
     create_graph_dict,
     eigenvec_centrality,
     expand_matrix_with_row_and_column,
@@ -109,3 +111,33 @@ def test_create_graph_dict():
         1: [0],
         2: [],
     }
+
+
+@pytest.mark.parametrize(
+    "data, expected_distances",
+    [
+        (np.array([[0, 0], [3, 4]]), np.array([[0, 5], [5, 0]])),
+        (
+            np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]),
+            np.array(
+                [
+                    [0, 5.19615242, 10.39230485],
+                    [5.19615242, 0, 5.19615242],
+                    [10.39230485, 5.19615242, 0],
+                ]
+            ),
+        ),
+        (
+            np.array([[1, 1, 1], [2, 2, 2], [3, 3, 3]]),
+            np.array(
+                [
+                    [0, 1.73205081, 3.46410162],
+                    [1.73205081, 0, 1.73205081],
+                    [3.46410162, 1.73205081, 0],
+                ]
+            ),
+        ),
+    ],
+)
+def test_Euclidean_distances(data, expected_distances):
+    assert np.allclose(Euclidean_distances(data), expected_distances)

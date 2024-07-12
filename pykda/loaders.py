@@ -9,6 +9,7 @@ import numpy as np
 from pykda.constants import PRINT_NORMALIZATION_WARNINGS
 from pykda.normalizers import _normalizer_type, standard_row_normalization
 from pykda.utilities import (
+    Gaussian_similarity,
     has_positive_row_sums,
     is_nonnegative_matrix,
     is_stochastic_matrix,
@@ -89,4 +90,29 @@ def load_predefined_transition_matrix(
     csv_file = StringIO(csv_string)
     data = np.genfromtxt(csv_file, delimiter=",")
 
-    return load_transition_matrix(data)
+    return load_transition_matrix(data, normalizer)
+
+
+def load_from_data(
+    data: np.ndarray, normalizer: _normalizer_type = standard_row_normalization
+) -> np.ndarray:
+    """
+    Based on a Gaussian similarity matrix, create a transition matrix for
+    the data as given in the array.
+
+    Parameters
+    ----------
+    data : np.ndarray
+        Array in which the rows represent data points.
+    normalizer : Callable[[np.ndarray], np.ndarray], optional
+        Normalization function used to create a stochastic matrix from the
+        Gaussian similarity matrix, by default standard_row_normalization.
+        See normalizers.py for pre-defined options.
+
+    Returns
+    -------
+    np.ndarray
+        Transition matrix of a Markov chain for the given data.
+    """
+
+    return load_transition_matrix(Gaussian_similarity(data), normalizer)

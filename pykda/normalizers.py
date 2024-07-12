@@ -59,7 +59,7 @@ def normalization_with_self_loops(A: np.ndarray) -> np.ndarray:
 
     rows_sums = A.sum(axis=1, keepdims=True)
     max_row_sum = np.max(rows_sums)
-    self_loops_matrix = np.diag(max_row_sum - rows_sums)
+    self_loops_matrix = np.diag((max_row_sum - rows_sums).flatten())
 
     return standard_row_normalization(A + self_loops_matrix)
 

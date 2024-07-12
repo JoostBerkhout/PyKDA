@@ -27,15 +27,15 @@ transition matrix `P`.
 from pykda.Markov_chain import MarkovChain
 
 P = [[0, 0.3, 0.7, 0, 0],
-     [0.7, 0.2, 0.1, 0, 0],
+     [0.7, 0.2, 0.09, 0, 0.01],
      [0.5, 0.25, 0.25, 0, 0],
      [0, 0, 0, 0.5, 0.5],
-     [0, 0, 0, 0.75, 0.25]]  # artificial transition matrix
+     [0.01, 0, 0, 0.74, 0.25]]  # artificial transition matrix
 MC = MarkovChain(P)
 ```
 We can study some properties of the Markov chain, such as the stationary distribution:
 ```python
-print(MC.stationary_distribution.flatten())
+print(MC.stationary_distribution.flatten().round(3))
 ```
 This gives `[0.226 0.156 0.23  0.232 0.156]`. We can also plot the Markov chain:
 ```python

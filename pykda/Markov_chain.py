@@ -437,8 +437,7 @@ class MarkovChain:
         labels: list[str] | None = None,
         hover_text: list[str] | None = None,
         notebook: bool = False,
-        **kwargs,
-    ) -> None:  # pragma: no cover
+    ) -> Network:  # pragma: no cover
         """Plots the Markov chain as a directed graph.
 
         Parameters
@@ -452,8 +451,11 @@ class MarkovChain:
         notebook : bool
             If True, the graph is plotted in a Jupyter notebook, e.g., using
             Google Colab. Default is False.
-        kwargs
-            Additional keyword arguments to be passed to pyvis.
+
+        Returns
+        -------
+        net : pyvis.network.Network (Network)
+            The pyvis network object.
 
         """
 
@@ -496,6 +498,8 @@ class MarkovChain:
 
         net.force_atlas_2based()
         net.show(file_name + ".html", notebook=notebook)
+
+        return net
 
 
 if __name__ == "__main__":  # pragma: no cover

@@ -16,13 +16,18 @@ The package also contains Markov chain tooling for the calculations; for more
 details about these calculations and the theory, please refer to the book from
 [Kemeny and Snell (1976)](https://link-springer-com.vu-nl.idm.oclc.org/book/9780387901923).
 
+!!! warning
+    `pykda` relies on matrix inversions and is therefore not suitable for the 
+    analysis of large networks (say networks of more than 1000 nodes).
+
 ### About
 
 This package is an attempt to make the code from [Berkhout and Heidergott (2019)](https://research.vu.nl/ws/portalfiles/portal/104470560/Analysis_of_Markov_influence_graphs.pdf)
 more accessible to the public. Also, it serves as a practice project for the
 author (Joost Berkhout) to learn about software package development in Python.
 
-`pykda` uses Python 3.10+ and depends on the following packages:
+`pykda` is compatible with Python 3.10 and later versions and depends on the 
+following packages:
 
 - `numpy`: for numerical linear algebra calculations.
 - `tarjan`: to determine strongly connected components in graphs.

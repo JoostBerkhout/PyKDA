@@ -15,7 +15,7 @@ def test_standard_row_normalization():
 
 def test_normalization_with_self_loops():
     for a in [0, 0.1, 0.5, 1, 10]:
-        A = np.array([[1 + a, 1, 0], [0, 0, 2 + a], [1, 1, a]])
+        A = np.array([[0, 1, 0], [0, 0, 2 + a], [1, 1, 0]])
         P = normalization_with_self_loops(A)
         expected_P = np.array([[1 + a, 1, 0], [0, 0, 2 + a], [1, 1, a]]) / (
             2 + a
