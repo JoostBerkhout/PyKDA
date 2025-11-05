@@ -14,7 +14,7 @@ of the Markov chain.
 
 The package also contains Markov chain tooling for the calculations; for more
 details about these calculations and the theory, please refer to the book from
-[Kemeny and Snell (1976)](https://link-springer-com.vu-nl.idm.oclc.org/book/9780387901923).
+[Kemeny and Snell (1976)](https://link.springer.com/book/9780387901923).
 
 !!! warning
     `pykda` relies on matrix inversions and is therefore not suitable for the 
@@ -37,7 +37,7 @@ following packages:
 
 Feel free to contribute! For major changes, please open an issue first
 to discuss what you would like to change.
-Please make to add tests of the new code where appropriate 
+Please add tests of the new code where appropriate 
 and use pre-commit.
 
 ### Acknowledgement
